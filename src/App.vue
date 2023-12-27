@@ -35,4 +35,12 @@ export default {
   text-align: center;
   color: white;
 }
+
+.el-tabs__item {
+  color: white;
+}
+
+.el-form-item__label {
+  color: white !important; 
+}
 </style>
