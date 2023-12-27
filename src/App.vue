@@ -1,15 +1,28 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <el-tabs v-model="activeTab" class="demo-tabs" @tab-click="handleClick">
+    <el-tab-pane label="Top 3" name="top3"/>
+    <el-tab-pane label="Thumbnails" name="thumbnails"/>
+  </el-tabs>
+  <Top3 v-show="activeTab ==='top3'"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Top3 from './components/Top3.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Top3
+  },
+  data() {
+    return {
+      activeTab: 'top3'
+    }
+  },
+  methods: {
+    handleClick() {
+      console.log(this.activeTab)
+    }
   }
 }
 </script>
@@ -20,7 +33,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: white;
 }
 </style>
