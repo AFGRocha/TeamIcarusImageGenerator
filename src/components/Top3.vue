@@ -70,7 +70,7 @@
         </div>
       </div>
       <div class="generate-button-section">
-        <el-button type="primary">Generate</el-button>
+        <el-button type="primary" @click="onClickGenerate">Generate</el-button>
       </div>
     </div>
   </el-form>
@@ -117,6 +117,27 @@ export default {
           this.currentCast = [];
           break;
       }
+    },
+    onClickGenerate() {
+      // Testing save as code with a txt file
+      const content = "This is the content of the file.";
+      const fileName = "example.txt";
+      const contentType = "text/plain";
+
+      const blob = new Blob([content], { type: contentType });
+
+      const a = document.createElement("a");
+      a.href = window.URL.createObjectURL(blob);
+      a.download = fileName;
+
+      // Append the anchor element to the body
+      document.body.appendChild(a);
+
+      // Simulate a click on the anchor element to trigger the download
+      a.click();
+
+      // Remove the anchor element from the body
+      document.body.removeChild(a);
     },
   },
 };
