@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     handleGenerateClick() {
-      this.$refs.canvas.teste();
+      this.$refs.canvas.generate();
     },
   },
 };
