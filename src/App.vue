@@ -1,19 +1,22 @@
 <template>
   <img class="team-icarus" src="./assets/Icarus1.png" />
-  <el-tabs v-model="activeTab" class="demo-tabs" @tab-click="handleClick">
+  <el-tabs v-model="activeTab" class="demo-tabs" >
     <el-tab-pane label="Top 3" name="top3" />
     <el-tab-pane label="Thumbnails" name="thumbnails" />
   </el-tabs>
-  <Top3 v-show="activeTab === 'top3'" />
+  <Top3 v-show="activeTab === 'top3'" @generate="handleGenerateClick"/>
+  <Canvas ref="canvas" />
 </template>
 
 <script>
 import Top3 from "./components/Top3.vue";
+import Canvas from "./components/Canvas.vue"
 
 export default {
   name: "App",
   components: {
     Top3,
+    Canvas
   },
   data() {
     return {
@@ -21,14 +24,17 @@ export default {
     };
   },
   methods: {
-    handleClick() {
-      console.log(this.activeTab);
+    handleGenerateClick() {
+      this.$refs.canvas.teste();
     },
   },
 };
 </script>
 
 <style>
+body {
+  background-color: #202124;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
