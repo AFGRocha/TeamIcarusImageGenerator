@@ -1,0 +1,25 @@
+{
+	"characters": [
+	  {"name": "A.K.I", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "Blanka", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "Cammy", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "Chun-Li", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "Dee Jay", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "Dhalsim", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "E. Honda", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "Guile", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "Jamie", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "JP", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "Juri", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "Ken", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "Kimberly", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "Lily", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "Luke", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "Manon", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "Marisa", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "Rashid", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "Ryu", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"name": "Zangief", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}}
+	]
+  }
+  

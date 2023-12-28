@@ -61,9 +61,9 @@
             <el-select v-model="player.char">
               <el-option
                 v-for="character in currentCast"
-                :key="character"
-                :label="character"
-                :value="character"
+                :key="character.name"
+                :label="character.name"
+                :value="character.name"
               />
             </el-select>
           </el-form-item>
@@ -77,9 +77,9 @@
 </template>
 
 <script>
-import smashCharNames from "../characters/name_list/smash_char_list.json";
-import sf6CharNames from "../characters/name_list/sf6_char_list.json";
-import gbvsrCharNames from "../characters/name_list/gbvsr_char_list.json";
+import smashCharNames from "../characters/smash_char_list.json";
+import sf6CharNames from "../characters/sf6_char_list.json";
+import gbvsrCharNames from "../characters/gbvsr_char_list.json";
 
 export default {
   name: "Top3",
