@@ -18,9 +18,13 @@ export default {
       // Create an image object
       const imgBackground = new Image();
       const imgForeground = new Image();
+      const imgFirstCharacter = new Image();
+      const imgMask = new Image();
       
       const background = require("../assets/backgrounds/smashnainvicta_background.png")
       const foreground = require("../assets/foregrounds/smashnainvicta_foreground.png")
+      const firstPlaceChar = require("../assets/characters/sf6/Cammy.png")
+      const mask = require("../assets/mask/smashnainvicta_mask.png")
 
       imgBackground.src =  background
      
@@ -28,10 +32,23 @@ export default {
         ctx.drawImage(imgBackground, 0, 0, canvas.width, canvas.height);
       };
 
+      imgFirstCharacter.src =  firstPlaceChar
+     
+      imgFirstCharacter.onload = await function () {
+        ctx.drawImage(imgFirstCharacter, -170, 50, 841, 951);
+      };
+    
+
       imgForeground.src = foreground 
 
-      imgForeground.onload = function () {
+      imgForeground.onload = await function () {
         ctx.drawImage(imgForeground, 0, 0, canvas.width, canvas.height);
+      };
+
+      imgMask.src = mask 
+
+      imgMask.onload = await function () {
+        ctx.drawImage(imgMask, 0, 0, canvas.width, canvas.height);
       };
 
       const dataURL = canvas.toDataURL(); 
@@ -46,7 +63,7 @@ export default {
       link.download = "canvas_image.png"; 
 
       // Simulate a click on the link to trigger the download
-      link.click();
+      // link.click();
     },
   },
 };
