@@ -30,7 +30,7 @@ export default {
     this.twitterIcon.src =  require("../assets/twitter_icon.png");
   },
   methods: {
-    generate(form) {
+    async generate(form) {
       console.log(form)
       // Get the canvas element and its context using $refs
       const canvas = this.$refs.myCanvas;
@@ -50,97 +50,106 @@ export default {
       imgFirstCharacter.src = firstPlaceChar;
       imgSecondCharacter.src = secondPlaceChar;
       imgThirdCharacter.src = thirdPlaceChar;
+      
+      const imagesToLoad = [this.imgBackground, this.imgForeground, imgFirstCharacter, imgSecondCharacter, imgThirdCharacter]
+      let loadedCounter = 0;
+      await document.fonts.ready;
+      for (let i = 0; i < imagesToLoad.length; i++) {
+        imagesToLoad[i].onload = () => {
+          loadedCounter++
+          if(loadedCounter == imagesToLoad.length) {
+            ctx.drawImage(this.imgBackground, 0, 0, canvas.width, canvas.height);
 
-      this.imgBackground.onload = () => {
-        ctx.drawImage(this.imgBackground, 0, 0, canvas.width, canvas.height);
+            //Mask first place character
+            const char1Canvas = this.maskCharacter(imgFirstCharacter, this.firstCharMask, form.playerData.first.character.renderDetails, 0)
+            const char2Canvas = this.maskCharacter(imgSecondCharacter, this.secondCharMask, form.playerData.second.character.renderDetails, 469)
+            const char3Canvas = this.maskCharacter(imgThirdCharacter, this.thirdCharMask, form.playerData.third.character.renderDetails, 940)
 
-        //Mask first place character
-        const char1Canvas = this.maskCharacter(imgFirstCharacter, this.firstCharMask, form.playerData.first.character.renderDetails, 0)
-        const char2Canvas = this.maskCharacter(imgSecondCharacter, this.secondCharMask, form.playerData.second.character.renderDetails, 469)
-        const char3Canvas = this.maskCharacter(imgThirdCharacter, this.thirdCharMask, form.playerData.third.character.renderDetails, 940)
+            ctx.drawImage(char1Canvas, 0, 0, canvas.width, canvas.height);
+            ctx.drawImage(char2Canvas, 0, 0, canvas.width, canvas.height);
+            ctx.drawImage(char3Canvas, 0, 0, canvas.width, canvas.height);
+            ctx.drawImage(this.imgForeground, 0, 0, canvas.width, canvas.height);
 
-        ctx.drawImage(char1Canvas, 0, 0, canvas.width, canvas.height);
-        ctx.drawImage(char2Canvas, 0, 0, canvas.width, canvas.height);
-        ctx.drawImage(char3Canvas, 0, 0, canvas.width, canvas.height);
-        ctx.drawImage(this.imgForeground, 0, 0, canvas.width, canvas.height);
+            //Text
+            ctx.textAlign = "center";
+            
+            //First Place name and prefix
+            ctx.font = '96px "Bebas Neue"'
+            ctx.fillStyle = "#fbd059";
+            ctx.fillText(form.playerData.first.prefix, 245 - ctx.measureText(form.playerData.first.name).width / 2, 625);
+            ctx.fillStyle = "#FFFFFF";
+            const firstNameX = ((form.playerData.first.prefix) ? 260 : 245);
+            ctx.fillText(form.playerData.first.name, firstNameX + ctx.measureText(form.playerData.first.prefix).width / 2, 625)  
+            //First Place twitter
+            if(form.playerData.first.twitter) {
+              ctx.font = '42px "Bebas Neue"'
+              ctx.fillStyle = "#000000";
+              ctx.fillText(`@${form.playerData.first.twitter}`, 245, 677);
+              ctx.drawImage(this.twitterIcon, 45, 645);
+            }
 
-        //Text
-        ctx.textAlign = "center";
-        
-        //First Place name and prefix
-        ctx.font = '96px "Bebas Neue"'
-        ctx.fillStyle = "#fbd059";
-        ctx.fillText(form.playerData.first.prefix, 245 - ctx.measureText(form.playerData.first.name).width / 2, 625);
-        ctx.fillStyle = "#FFFFFF";
-        const firstNameX = ((form.playerData.first.prefix) ? 260 : 245);
-        ctx.fillText(form.playerData.first.name, firstNameX + ctx.measureText(form.playerData.first.prefix).width / 2, 625)  
-        //First Place twitter
-        if(form.playerData.first.twitter) {
-          ctx.font = '42px "Bebas Neue"'
-          ctx.fillStyle = "#000000";
-          ctx.fillText(`@${form.playerData.first.twitter}`, 245, 677);
-          ctx.drawImage(this.twitterIcon, 45, 645);
+            //Second Place name and prefix
+            ctx.font = '96px "Bebas Neue"'
+            ctx.fillStyle = "#fbd059";
+            ctx.fillText(form.playerData.second.prefix, 715 - ctx.measureText(form.playerData.second.name).width / 2, 625);
+            ctx.fillStyle = "#FFFFFF";
+            const secondNameX = ((form.playerData.second.prefix) ? 730 : 715);
+            ctx.fillText(form.playerData.second.name, secondNameX + ctx.measureText(form.playerData.second.prefix).width / 2, 625)  
+            //Second Place twitter
+            if(form.playerData.second.twitter) {
+              ctx.font = '42px "Bebas Neue"'
+              ctx.fillStyle = "#000000";
+              ctx.fillText(`@${form.playerData.second.twitter}`, 715, 677);
+              ctx.drawImage(this.twitterIcon, 515, 645);
+            }
+
+            //Third Place name and prefix
+            ctx.font = '96px "Bebas Neue"'
+            ctx.fillStyle = "#fbd059";
+            ctx.fillText(form.playerData.third.prefix, 1187 - ctx.measureText(form.playerData.third.name).width / 2, 625);
+            ctx.fillStyle = "#FFFFFF";
+            const thirdNameX = ((form.playerData.third.prefix) ? 1202 : 1187);
+            ctx.fillText(form.playerData.third.name, thirdNameX + ctx.measureText(form.playerData.third.prefix).width / 2, 625)  
+            //Third Place twitter
+            if(form.playerData.third.twitter) {
+              ctx.font = '42px "Bebas Neue"'
+              ctx.fillStyle = "#000000";
+              ctx.fillText(`@${form.playerData.third.twitter}`, 1187, 677);
+              ctx.drawImage(this.twitterIcon, 987, 645);
+            }
+
+            //Tournament name with number
+            ctx.font = '20px "The Bold Font"'
+            ctx.fillStyle = "#FFFFFF";
+            ctx.fillText(`${form.event} #${form.edition}`, 1557, 235);
+
+            //Start.gg
+            ctx.font = '22px "Bebas Neue"'
+            ctx.fillStyle = "#FFFFFF";
+            ctx.fillText(`start.gg/`, 1557 - ctx.measureText(form.page).width / 2, 634);
+            ctx.fillStyle = "#0599ea";
+            ctx.fillText(form.page, 1557 + ctx.measureText(`start.gg/`).width / 2, 634) 
+
+            //Entrants
+            // ctx.fillStyle = "#0599ea"; 
+            ctx.fillText(form.entrants, 1557 - ctx.measureText(' Entrants').width / 2, 679);
+            ctx.fillStyle = "#FFFFFF";
+            ctx.fillText(' Entrants', 1557 + ctx.measureText(form.entrants).width / 2, 679) 
+
+            //Date  
+            // ctx.fillStyle = "#FFFFFF"; 
+            ctx.fillText(form.date, 1557 - ctx.measureText(' - Porto').width / 2, 726);
+            ctx.fillStyle = "#0599ea";
+            ctx.fillText(' - Porto', 1557 + ctx.measureText(form.date).width / 2, 726) 
+
+
+            //Venue logo
+            ctx.drawImage(this[form.venue + 'Logo'], 1433, 490);
+            this.showSave = true;
+          }
         }
-
-        //Second Place name and prefix
-        ctx.font = '96px "Bebas Neue"'
-        ctx.fillStyle = "#fbd059";
-        ctx.fillText(form.playerData.second.prefix, 715 - ctx.measureText(form.playerData.second.name).width / 2, 625);
-        ctx.fillStyle = "#FFFFFF";
-        const secondNameX = ((form.playerData.second.prefix) ? 730 : 715);
-        ctx.fillText(form.playerData.second.name, secondNameX + ctx.measureText(form.playerData.second.prefix).width / 2, 625)  
-        //Second Place twitter
-        if(form.playerData.second.twitter) {
-          ctx.font = '42px "Bebas Neue"'
-          ctx.fillStyle = "#000000";
-          ctx.fillText(`@${form.playerData.second.twitter}`, 715, 677);
-          ctx.drawImage(this.twitterIcon, 515, 645);
-        }
-
-        //Third Place name and prefix
-        ctx.font = '96px "Bebas Neue"'
-        ctx.fillStyle = "#fbd059";
-        ctx.fillText(form.playerData.third.prefix, 1187 - ctx.measureText(form.playerData.third.name).width / 2, 625);
-        ctx.fillStyle = "#FFFFFF";
-        const thirdNameX = ((form.playerData.third.prefix) ? 1202 : 1187);
-        ctx.fillText(form.playerData.third.name, thirdNameX + ctx.measureText(form.playerData.third.prefix).width / 2, 625)  
-        //Third Place twitter
-        if(form.playerData.third.twitter) {
-          ctx.font = '42px "Bebas Neue"'
-          ctx.fillStyle = "#000000";
-          ctx.fillText(`@${form.playerData.third.twitter}`, 1187, 677);
-          ctx.drawImage(this.twitterIcon, 987, 645);
-        }
-
-        //Tournament name with number
-        ctx.font = '20px "The Bold Font"'
-        ctx.fillStyle = "#FFFFFF";
-        ctx.fillText(`${form.event} #${form.edition}`, 1557, 235);
-
-        //Start.gg
-        ctx.font = '22px "Bebas Neue"'
-        ctx.fillStyle = "#FFFFFF";
-        ctx.fillText(`start.gg/`, 1557 - ctx.measureText(form.page).width / 2, 634);
-        ctx.fillStyle = "#0599ea";
-        ctx.fillText(form.page, 1557 + ctx.measureText(`start.gg/`).width / 2, 634) 
-
-        //Entrants
-        // ctx.fillStyle = "#0599ea"; 
-        ctx.fillText(form.entrants, 1557 - ctx.measureText(' Entrants').width / 2, 679);
-        ctx.fillStyle = "#FFFFFF";
-        ctx.fillText(' Entrants', 1557 + ctx.measureText(form.entrants).width / 2, 679) 
-
-        //Date  
-        // ctx.fillStyle = "#FFFFFF"; 
-        ctx.fillText(form.date, 1557 - ctx.measureText(' - Porto').width / 2, 726);
-        ctx.fillStyle = "#0599ea";
-        ctx.fillText(' - Porto', 1557 + ctx.measureText(form.date).width / 2, 726) 
-
-
-        //Venue logo
-        ctx.drawImage(this[form.venue + 'Logo'], 1433, 490);
-        this.showSave = true;
-      };
+      }
+    
     },
     save() {
       const dataURL = this.$refs.myCanvas.toDataURL();
