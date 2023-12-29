@@ -17,6 +17,7 @@ export default {
       thirdCharMask: new Image(),
       aniplayLogo: new Image(),
       qdLogo: new Image(),
+      twitterIcon: new Image(),
       showSave: false,
     };
   },
@@ -26,6 +27,7 @@ export default {
     this.thirdCharMask.src = require("../assets/mask/mask3.png");
     this.aniplayLogo.src = require("../assets/venues/aniplay.png");
     this.qdLogo.src = require("../assets/venues/qd.png");
+    this.twitterIcon.src =  require("../assets/twitter_icon.png");
   },
   methods: {
     generate(form) {
@@ -64,6 +66,52 @@ export default {
 
         //Text
         ctx.textAlign = "center";
+        
+        //First Place name and prefix
+        ctx.font = '96px "Bebas Neue"'
+        ctx.fillStyle = "#fbd059";
+        ctx.fillText(form.playerData.first.prefix, 245 - ctx.measureText(form.playerData.first.name).width / 2, 625);
+        ctx.fillStyle = "#FFFFFF";
+        const firstNameX = ((form.playerData.first.prefix) ? 260 : 245);
+        ctx.fillText(form.playerData.first.name, firstNameX + ctx.measureText(form.playerData.first.prefix).width / 2, 625)  
+        //First Place twitter
+        if(form.playerData.first.twitter) {
+          ctx.font = '42px "Bebas Neue"'
+          ctx.fillStyle = "#000000";
+          ctx.fillText(`@${form.playerData.first.twitter}`, 245, 677);
+          ctx.drawImage(this.twitterIcon, 45, 645);
+        }
+
+        //Second Place name and prefix
+        ctx.font = '96px "Bebas Neue"'
+        ctx.fillStyle = "#fbd059";
+        ctx.fillText(form.playerData.second.prefix, 715 - ctx.measureText(form.playerData.second.name).width / 2, 625);
+        ctx.fillStyle = "#FFFFFF";
+        const secondNameX = ((form.playerData.second.prefix) ? 730 : 715);
+        ctx.fillText(form.playerData.second.name, secondNameX + ctx.measureText(form.playerData.second.prefix).width / 2, 625)  
+        //Second Place twitter
+        if(form.playerData.second.twitter) {
+          ctx.font = '42px "Bebas Neue"'
+          ctx.fillStyle = "#000000";
+          ctx.fillText(`@${form.playerData.second.twitter}`, 715, 677);
+          ctx.drawImage(this.twitterIcon, 515, 645);
+        }
+
+        //Third Place name and prefix
+        ctx.font = '96px "Bebas Neue"'
+        ctx.fillStyle = "#fbd059";
+        ctx.fillText(form.playerData.third.prefix, 1187 - ctx.measureText(form.playerData.third.name).width / 2, 625);
+        ctx.fillStyle = "#FFFFFF";
+        const thirdNameX = ((form.playerData.third.prefix) ? 1202 : 1187);
+        ctx.fillText(form.playerData.third.name, thirdNameX + ctx.measureText(form.playerData.third.prefix).width / 2, 625)  
+        //Third Place twitter
+        if(form.playerData.third.twitter) {
+          ctx.font = '42px "Bebas Neue"'
+          ctx.fillStyle = "#000000";
+          ctx.fillText(`@${form.playerData.third.twitter}`, 1187, 677);
+          ctx.drawImage(this.twitterIcon, 987, 645);
+        }
+
         //Tournament name with number
         ctx.font = '20px "The Bold Font"'
         ctx.fillStyle = "#FFFFFF";
@@ -73,11 +121,11 @@ export default {
         ctx.font = '22px "Bebas Neue"'
         ctx.fillStyle = "#FFFFFF";
         ctx.fillText(`start.gg/`, 1557 - ctx.measureText(form.page).width / 2, 634);
-        ctx.fillStyle = "#013daa";
+        ctx.fillStyle = "#0599ea";
         ctx.fillText(form.page, 1557 + ctx.measureText(`start.gg/`).width / 2, 634) 
 
         //Entrants
-        // ctx.fillStyle = "#013daa"; 
+        // ctx.fillStyle = "#0599ea"; 
         ctx.fillText(form.entrants, 1557 - ctx.measureText(' Entrants').width / 2, 679);
         ctx.fillStyle = "#FFFFFF";
         ctx.fillText(' Entrants', 1557 + ctx.measureText(form.entrants).width / 2, 679) 
@@ -85,7 +133,7 @@ export default {
         //Date  
         // ctx.fillStyle = "#FFFFFF"; 
         ctx.fillText(form.date, 1557 - ctx.measureText(' - Porto').width / 2, 726);
-        ctx.fillStyle = "#013daa";
+        ctx.fillStyle = "#0599ea";
         ctx.fillText(' - Porto', 1557 + ctx.measureText(form.date).width / 2, 726) 
 
 
@@ -104,7 +152,7 @@ export default {
       link.href = dataURL;
 
       // Specify the filename for the saved image
-      link.download = "canvas_image.png";
+      link.download = "generated_top3.png";
 
       // Simulate a click on the link to trigger the download
       link.click();
