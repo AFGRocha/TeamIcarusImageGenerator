@@ -12,14 +12,18 @@ export default {
     return {
       imgBackground: new Image(),
       imgForeground: new Image(),
-      imgMask: new Image(),
+      firstCharMask: new Image(),
+      secondCharMask: new Image(),
+      thirdCharMask: new Image(),
       showSave: false,
     };
   },
   mounted() {
     this.imgBackground.src = require("../assets/backgrounds/smashnainvicta_background.png");
     this.imgForeground.src = require("../assets/foregrounds/smashnainvicta_foreground.png");
-    this.imgMask.src = require("../assets/mask/mask.png");
+    this.firstCharMask.src = require("../assets/mask/mask1.png");
+    this.secondCharMask.src = require("../assets/mask/mask2.png");
+    this.thirdCharMask.src = require("../assets/mask/mask3.png");
   },
   methods: {
     generate(form) {
@@ -34,30 +38,23 @@ export default {
       const imgThirdCharacter = new Image();
       const firstPlaceChar = require("../assets/characters/gbvsr/" + form.playerData.first.character.name + ".png");
       const secondPlaceChar = require("../assets/characters/gbvsr/" + form.playerData.second.character.name + ".png");
-      const thridPlaceChar = require("../assets/characters/gbvsr/" + form.playerData.third.character.name + ".png");
+      const thirdPlaceChar = require("../assets/characters/gbvsr/" + form.playerData.third.character.name + ".png");
 
       imgFirstCharacter.src = firstPlaceChar;
       imgSecondCharacter.src = secondPlaceChar;
-      imgThirdCharacter.src = thridPlaceChar;
+      imgThirdCharacter.src = thirdPlaceChar;
 
       imgThirdCharacter.onload = () => {
         ctx.drawImage(this.imgBackground, 0, 0, canvas.width, canvas.height);
 
-        //Set another canvas for the masking
-        const offscreenCanvas = document.createElement("canvas");
-        offscreenCanvas.width = canvas.width;
-        offscreenCanvas.height = canvas.height;
-        const offscreenCtx = offscreenCanvas.getContext("2d");
+        //Mask first place character
+        const char1Canvas = this.maskCharacter(imgFirstCharacter, this.firstCharMask, form.playerData.first.character.renderDetails, 0)
+        const char2Canvas = this.maskCharacter(imgSecondCharacter, this.secondCharMask, form.playerData.second.character.renderDetails, 469)
+        const char3Canvas = this.maskCharacter(imgThirdCharacter, this.thirdCharMask, form.playerData.third.character.renderDetails, 940)
 
-        //Render chars
-        offscreenCtx.drawImage(imgFirstCharacter, form.playerData.first.character.renderDetails.posX , form.playerData.first.character.renderDetails.posY, form.playerData.first.character.renderDetails.width, form.playerData.first.character.renderDetails.height);
-        offscreenCtx.drawImage(imgSecondCharacter, form.playerData.second.character.renderDetails.posX + 469, form.playerData.second.character.renderDetails.posY, form.playerData.second.character.renderDetails.width, form.playerData.second.character.renderDetails.height);
-        offscreenCtx.drawImage(imgThirdCharacter, form.playerData.third.character.renderDetails.posX + 940, form.playerData.third.character.renderDetails.posY, form.playerData.third.character.renderDetails.width, form.playerData.third.character.renderDetails.height);
-        offscreenCtx.globalCompositeOperation = "destination-in";
-        offscreenCtx.drawImage(this.imgMask, 0, 0, canvas.width, canvas.height);
-        offscreenCtx.globalCompositeOperation = "source-over";
-
-        ctx.drawImage(offscreenCanvas, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(char1Canvas, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(char2Canvas, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(char3Canvas, 0, 0, canvas.width, canvas.height);
         ctx.drawImage(this.imgForeground, 0, 0, canvas.width, canvas.height);
 
         this.showSave = true;
@@ -77,7 +74,20 @@ export default {
 
       // Simulate a click on the link to trigger the download
       link.click();
-    },
+    }, 
+    maskCharacter(image, mask, renderDetails, xModifier) {
+      const offscreenCanvas = document.createElement("canvas");
+      offscreenCanvas.width = this.$refs.myCanvas.width;
+      offscreenCanvas.height = this.$refs.myCanvas.height;
+      const offscreenCtx = offscreenCanvas.getContext("2d");
+
+      offscreenCtx.drawImage(image, renderDetails.posX + xModifier, renderDetails.posY, renderDetails.width, renderDetails.height);
+      offscreenCtx.globalCompositeOperation = "destination-in";
+      offscreenCtx.drawImage(mask, 0, 0, this.$refs.myCanvas.width, this.$refs.myCanvas.height);
+      offscreenCtx.globalCompositeOperation = "source-over";
+
+      return offscreenCanvas
+    }
   },
 };
 </script>
