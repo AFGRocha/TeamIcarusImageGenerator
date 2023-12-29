@@ -55,4 +55,11 @@ body {
   width: 70px;
   float: right;
 }
+
+@font-face {
+  font-family: 'The Bold Font';
+  src: url('fonts/THEBOLDFONT.otf');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 </style>

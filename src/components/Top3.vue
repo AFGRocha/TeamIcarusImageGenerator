@@ -2,14 +2,21 @@
   <el-form :model="form" label-width="100px" label-position="left">
     <h2>Tournament Information</h2>
     <div style="width: 400px">
-      <el-form-item label="Event name">
-        <el-input v-model="form.name" />
+      <el-form-item label="Event">
+        <el-select v-model="form.event" value-key="name">
+          <el-option value="Smash Na Invicta" />
+          <el-option value="Quebra Comandos" />
+          <el-option value="Invicta Fighters" />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="Edition">
+        <el-input type="number" v-model="form.edition" />
       </el-form-item>
       <el-form-item label="Start.gg page">
         <el-input v-model="form.page" />
       </el-form-item>
       <el-form-item label="Entrants">
-        <el-input v-model="form.entrants" />
+        <el-input type="number" v-model="form.entrants" />
       </el-form-item>
       <el-form-item label="Date">
         <el-input v-model="form.date" />
@@ -51,6 +58,9 @@
           :key="player"
         >
           <p>Player {{ index + 1 }}</p>
+          <el-form-item label="Prefix">
+            <el-input v-model="player.prefix" />
+          </el-form-item>
           <el-form-item label="Name">
             <el-input v-model="player.name" />
           </el-form-item>
@@ -58,6 +68,16 @@
             <el-input v-model="player.twitter" />
           </el-form-item>
           <el-form-item label="Character">
+            <el-select v-model="player.character" value-key="name">
+              <el-option
+                v-for="character in currentCast"
+                :key="character.name"
+                :label="character.name"
+                :value="character"
+              />
+            </el-select>
+          </el-form-item>
+          <el-form-item v-if="form.game === 'smash'" label="Color">
             <el-select v-model="player.character" value-key="name">
               <el-option
                 v-for="character in currentCast"
@@ -88,14 +108,15 @@ export default {
       form: {
         game: "",
         venue: "",
-        name: "",
+        event: "",
+        edition: "",
         page: "",
         entrants: "",
         date: "",
         playerData: {
-          first: { name: "", twitter: "", character: {} },
-          second: { name: "", twitter: "", character: {} },
-          third: { name: "", twitter: "", character: {} },
+          first: { name: "", prefix: "", twitter: "", character: {} },
+          second: { name: "", prefix: "", twitter: "", character: {} },
+          third: { name: "", prefix: "", twitter: "", character: {} },
         },
       },
       currentCast: [],
@@ -119,7 +140,7 @@ export default {
       }
     },
     onClickGenerate() {
-      this.$emit('generate', this.form)
+      this.$emit("generate", this.form);
     },
   },
 };

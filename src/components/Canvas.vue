@@ -57,6 +57,32 @@ export default {
         ctx.drawImage(char3Canvas, 0, 0, canvas.width, canvas.height);
         ctx.drawImage(this.imgForeground, 0, 0, canvas.width, canvas.height);
 
+        //Text
+        ctx.textAlign = "center";
+        //Tournament name with number
+        ctx.font = '20px "The Bold Font"'
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillText(`${form.event} #${form.edition}`, 1557, 235);
+
+        //Start.gg
+        ctx.font = '22px "Bebas Neue"'
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillText(`start.gg/`, 1557 - ctx.measureText(form.page).width / 2, 634);
+        ctx.fillStyle = "#778bff";
+        ctx.fillText(form.page, 1557 + ctx.measureText(`start.gg/`).width / 2, 634) 
+
+        //Entrants
+        // ctx.fillStyle = "#778bff"; 
+        ctx.fillText(form.entrants, 1557 - ctx.measureText(' Entrants').width / 2, 679);
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillText(' Entrants', 1557 + ctx.measureText(form.entrants).width / 2, 679) 
+
+        //Date  
+        // ctx.fillStyle = "#FFFFFF"; 
+        ctx.fillText(form.date, 1557 - ctx.measureText(' - Porto').width / 2, 726);
+        ctx.fillStyle = "#778bff";
+        ctx.fillText(' - Porto', 1557 + ctx.measureText(form.date).width / 2, 726) 
+
         this.showSave = true;
       };
     },

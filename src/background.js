@@ -33,6 +33,9 @@ async function createWindow() {
     // Load the index.html when not in development
     win.loadURL('app://./index.html')
   }
+  win.maximize()
+  win.setTitle('Team Icarus Image Generator');
+  win.setIcon('/assets/Icarus1.png')
 }
 
 // Quit when all windows are closed.
