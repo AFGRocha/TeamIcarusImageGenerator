@@ -15,6 +15,8 @@ export default {
       firstCharMask: new Image(),
       secondCharMask: new Image(),
       thirdCharMask: new Image(),
+      aniplayLogo: new Image(),
+      qdLogo: new Image(),
       showSave: false,
     };
   },
@@ -24,6 +26,8 @@ export default {
     this.firstCharMask.src = require("../assets/mask/mask1.png");
     this.secondCharMask.src = require("../assets/mask/mask2.png");
     this.thirdCharMask.src = require("../assets/mask/mask3.png");
+    this.aniplayLogo.src = require("../assets/venues/aniplay.png");
+    this.qdLogo.src = require("../assets/venues/qd.png");
   },
   methods: {
     generate(form) {
@@ -83,6 +87,9 @@ export default {
         ctx.fillStyle = "#778bff";
         ctx.fillText(' - Porto', 1557 + ctx.measureText(form.date).width / 2, 726) 
 
+
+        //Venue logo
+        ctx.drawImage(this[form.venue + 'Logo'], 1433, 490);
         this.showSave = true;
       };
     },
