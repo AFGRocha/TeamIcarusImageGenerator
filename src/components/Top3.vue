@@ -68,7 +68,7 @@
             <el-input v-model="player.twitter" />
           </el-form-item>
           <el-form-item label="Character">
-            <el-select v-model="player.character" value-key="name">
+            <el-select v-model="player.character" value-key="name" filterable>
               <el-option
                 v-for="character in currentCast"
                 :key="character.name"
