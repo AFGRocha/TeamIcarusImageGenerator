@@ -21,8 +21,6 @@ export default {
     };
   },
   mounted() {
-    this.imgBackground.src = require("../assets/backgrounds/smashnainvicta_background.png");
-    this.imgForeground.src = require("../assets/foregrounds/smashnainvicta_foreground.png");
     this.firstCharMask.src = require("../assets/mask/mask1.png");
     this.secondCharMask.src = require("../assets/mask/mask2.png");
     this.thirdCharMask.src = require("../assets/mask/mask3.png");
@@ -36,6 +34,9 @@ export default {
       const canvas = this.$refs.myCanvas;
       const ctx = canvas.getContext("2d");
 
+      this.imgBackground.src = require(`../assets/backgrounds/${form.event}_${form.game}_background.png`);
+      this.imgForeground.src = require(`../assets/foregrounds/${form.event}_${form.game}_foreground.png`);
+
       // Create an image object
       const imgFirstCharacter = new Image();
       const imgSecondCharacter = new Image();
@@ -48,7 +49,7 @@ export default {
       imgSecondCharacter.src = secondPlaceChar;
       imgThirdCharacter.src = thirdPlaceChar;
 
-      imgThirdCharacter.onload = () => {
+      this.imgBackground.onload = () => {
         ctx.drawImage(this.imgBackground, 0, 0, canvas.width, canvas.height);
 
         //Mask first place character
@@ -72,11 +73,11 @@ export default {
         ctx.font = '22px "Bebas Neue"'
         ctx.fillStyle = "#FFFFFF";
         ctx.fillText(`start.gg/`, 1557 - ctx.measureText(form.page).width / 2, 634);
-        ctx.fillStyle = "#778bff";
+        ctx.fillStyle = "#013daa";
         ctx.fillText(form.page, 1557 + ctx.measureText(`start.gg/`).width / 2, 634) 
 
         //Entrants
-        // ctx.fillStyle = "#778bff"; 
+        // ctx.fillStyle = "#013daa"; 
         ctx.fillText(form.entrants, 1557 - ctx.measureText(' Entrants').width / 2, 679);
         ctx.fillStyle = "#FFFFFF";
         ctx.fillText(' Entrants', 1557 + ctx.measureText(form.entrants).width / 2, 679) 
@@ -84,7 +85,7 @@ export default {
         //Date  
         // ctx.fillStyle = "#FFFFFF"; 
         ctx.fillText(form.date, 1557 - ctx.measureText(' - Porto').width / 2, 726);
-        ctx.fillStyle = "#778bff";
+        ctx.fillStyle = "#013daa";
         ctx.fillText(' - Porto', 1557 + ctx.measureText(form.date).width / 2, 726) 
 
 
