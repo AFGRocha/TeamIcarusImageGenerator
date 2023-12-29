@@ -22,19 +22,25 @@ export default {
     this.imgMask.src = require("../assets/mask/mask.png");
   },
   methods: {
-    generate() {
+    generate(form) {
+      console.log(form)
       // Get the canvas element and its context using $refs
       const canvas = this.$refs.myCanvas;
       const ctx = canvas.getContext("2d");
 
       // Create an image object
       const imgFirstCharacter = new Image();
-
-      const firstPlaceChar = require("../assets/characters/sf6/Cammy.png");
+      const imgSecondCharacter = new Image();
+      const imgThirdCharacter = new Image();
+      const firstPlaceChar = require("../assets/characters/gbvsr/" + form.playerData.first.character.name + ".png");
+      const secondPlaceChar = require("../assets/characters/gbvsr/" + form.playerData.second.character.name + ".png");
+      const thridPlaceChar = require("../assets/characters/gbvsr/" + form.playerData.third.character.name + ".png");
 
       imgFirstCharacter.src = firstPlaceChar;
+      imgSecondCharacter.src = secondPlaceChar;
+      imgThirdCharacter.src = thridPlaceChar;
 
-      imgFirstCharacter.onload = () => {
+      imgThirdCharacter.onload = () => {
         ctx.drawImage(this.imgBackground, 0, 0, canvas.width, canvas.height);
 
         //Set another canvas for the masking
@@ -44,9 +50,9 @@ export default {
         const offscreenCtx = offscreenCanvas.getContext("2d");
 
         //Render chars
-        offscreenCtx.drawImage(imgFirstCharacter, -170, 50, 841, 951);
-        offscreenCtx.drawImage(imgFirstCharacter, -170 + 469, 50, 841, 951);
-        offscreenCtx.drawImage(imgFirstCharacter, -170 + 940, 50, 841, 951);
+        offscreenCtx.drawImage(imgFirstCharacter, form.playerData.first.character.renderDetails.posX , form.playerData.first.character.renderDetails.posY, form.playerData.first.character.renderDetails.width, form.playerData.first.character.renderDetails.height);
+        offscreenCtx.drawImage(imgSecondCharacter, form.playerData.second.character.renderDetails.posX + 469, form.playerData.second.character.renderDetails.posY, form.playerData.second.character.renderDetails.width, form.playerData.second.character.renderDetails.height);
+        offscreenCtx.drawImage(imgThirdCharacter, form.playerData.third.character.renderDetails.posX + 940, form.playerData.third.character.renderDetails.posY, form.playerData.third.character.renderDetails.width, form.playerData.third.character.renderDetails.height);
         offscreenCtx.globalCompositeOperation = "destination-in";
         offscreenCtx.drawImage(this.imgMask, 0, 0, canvas.width, canvas.height);
         offscreenCtx.globalCompositeOperation = "source-over";

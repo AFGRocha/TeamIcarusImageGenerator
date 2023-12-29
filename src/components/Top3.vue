@@ -58,12 +58,12 @@
             <el-input v-model="player.twitter" />
           </el-form-item>
           <el-form-item label="Character">
-            <el-select v-model="player.char">
+            <el-select v-model="player.character" value-key="name">
               <el-option
                 v-for="character in currentCast"
                 :key="character.name"
                 :label="character.name"
-                :value="character.name"
+                :value="character"
               />
             </el-select>
           </el-form-item>
@@ -93,9 +93,9 @@ export default {
         entrants: "",
         date: "",
         playerData: {
-          first: { name: "", twitter: "", char: "" },
-          second: { name: "", twitter: "", char: "" },
-          third: { name: "", twitter: "", char: "" },
+          first: { name: "", twitter: "", character: {} },
+          second: { name: "", twitter: "", character: {} },
+          third: { name: "", twitter: "", character: {} },
         },
       },
       currentCast: [],
@@ -119,7 +119,7 @@ export default {
       }
     },
     onClickGenerate() {
-      this.$emit('generate')
+      this.$emit('generate', this.form)
     },
   },
 };

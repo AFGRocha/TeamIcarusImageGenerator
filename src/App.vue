@@ -24,8 +24,8 @@ export default {
     };
   },
   methods: {
-    handleGenerateClick() {
-      this.$refs.canvas.generate();
+    handleGenerateClick(form) {
+      this.$refs.canvas.generate(form);
     },
   },
 };
