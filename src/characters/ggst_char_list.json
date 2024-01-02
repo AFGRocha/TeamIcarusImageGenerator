@@ -1,0 +1,22 @@
+{
+	"characters": [
+	  {"character": "Sol Badguy", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"character": "Ky Kiske", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"character": "May", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"character": "Faust", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"character": "Potemkin", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"character": "Chipp", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"character": "Zato-1", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"character": "Millia", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"character": "Ramlethal", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"character": "Leo Whitefang", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"character": "Nagoriyuki", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"character": "Giovanna", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"character": "Anji", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"character": "I-NO", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"character": "Goldlewis", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"character": "Happy Chaos", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+	  {"character": "Jack-O'", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}}
+	]
+  }
+  
