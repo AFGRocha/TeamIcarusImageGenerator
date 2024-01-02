@@ -43,9 +43,9 @@ export default {
       const imgFirstCharacter = new Image();
       const imgSecondCharacter = new Image();
       const imgThirdCharacter = new Image();
-      const firstPlaceChar = require("../assets/characters/gbvsr/" + form.playerData.first.character.name + ".png");
-      const secondPlaceChar = require("../assets/characters/gbvsr/" + form.playerData.second.character.name + ".png");
-      const thirdPlaceChar = require("../assets/characters/gbvsr/" + form.playerData.third.character.name + ".png");
+      const firstPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.first.character.name}.png`);
+      const secondPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.second.character.name}.png`);
+      const thirdPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.third.character.name}.png`);
 
       imgFirstCharacter.src = firstPlaceChar;
       imgSecondCharacter.src = secondPlaceChar;
@@ -127,20 +127,19 @@ export default {
             ctx.font = '22px "Bebas Neue"'
             ctx.fillStyle = "#FFFFFF";
             ctx.fillText(`start.gg/`, 1557 - ctx.measureText(form.page).width / 2, 634);
-            ctx.fillStyle = "#0599ea";
+            ctx.fillStyle = form.color;
             ctx.fillText(form.page, 1557 + ctx.measureText(`start.gg/`).width / 2, 634) 
 
             //Entrants
-            // ctx.fillStyle = "#0599ea"; 
             ctx.fillText(form.entrants, 1557 - ctx.measureText(' Entrants').width / 2, 679);
             ctx.fillStyle = "#FFFFFF";
             ctx.fillText(' Entrants', 1557 + ctx.measureText(form.entrants).width / 2, 679) 
 
             //Date  
             // ctx.fillStyle = "#FFFFFF"; 
-            ctx.fillText(form.date, 1557 - ctx.measureText(' - Porto').width / 2, 726);
-            ctx.fillStyle = "#0599ea";
-            ctx.fillText(' - Porto', 1557 + ctx.measureText(form.date).width / 2, 726) 
+            ctx.fillText(form.date + ' - ', 1557 - ctx.measureText('Porto').width / 2, 726);
+            ctx.fillStyle = form.color
+            ctx.fillText('Porto', 1557 + ctx.measureText(form.date + ' - ').width / 2, 726) 
 
 
             //Venue logo

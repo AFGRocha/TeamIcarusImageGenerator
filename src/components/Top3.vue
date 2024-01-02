@@ -47,6 +47,13 @@
         >
           <img class="select-image" src="../assets/games/GBVSR_Logo.png" />
         </el-option>
+        <el-option
+          class="select-option"
+          label="Guilty Gear Strive"
+          value="ggst"
+        >
+          <img class="select-image" src="../assets/games/GGST_Logo.png" />
+        </el-option>
       </el-select>
     </el-form-item>
     <div v-if="form.game">
@@ -100,6 +107,7 @@
 import smashCharNames from "../characters/smash_char_list.json";
 import sf6CharNames from "../characters/sf6_char_list.json";
 import gbvsrCharNames from "../characters/gbvsr_char_list.json";
+import ggstCharNames from "../characters/ggst_char_list.json";
 
 export default {
   name: "Top3",
@@ -118,6 +126,7 @@ export default {
           second: { name: "", prefix: "", twitter: "", character: {} },
           third: { name: "", prefix: "", twitter: "", character: {} },
         },
+        color: ''
       },
       currentCast: [],
     };
@@ -130,9 +139,15 @@ export default {
           break;
         case "sf6":
           this.currentCast = sf6CharNames.characters;
+          this.form.color = '#6d6d6d'
           break;
         case "gbvsr":
           this.currentCast = gbvsrCharNames.characters;
+          this.form.color = '#058dd8'
+          break;
+        case "ggst":
+          this.currentCast = ggstCharNames.characters;
+          this.form.color = '#be262c'
           break;
         default:
           this.currentCast = [];
