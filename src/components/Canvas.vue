@@ -43,9 +43,19 @@ export default {
       const imgFirstCharacter = new Image();
       const imgSecondCharacter = new Image();
       const imgThirdCharacter = new Image();
-      const firstPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.first.character.name}.png`);
-      const secondPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.second.character.name}.png`);
-      const thirdPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.third.character.name}.png`);
+      let firstPlaceChar
+      let secondPlaceChar
+      let thirdPlaceChar
+      if (form.game === 'smash') {
+        firstPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.first.character.name}_0${form.playerData.first.color}.png`);
+        secondPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.second.character.name}_0${form.playerData.second.color}.png`);
+        thirdPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.third.character.name}_0${form.playerData.third.color}.png`);
+      } 
+      else {
+        firstPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.first.character.name}.png`);
+        secondPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.second.character.name}.png`);
+        thirdPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.third.character.name}.png`);
+      }
 
       imgFirstCharacter.src = firstPlaceChar;
       imgSecondCharacter.src = secondPlaceChar;

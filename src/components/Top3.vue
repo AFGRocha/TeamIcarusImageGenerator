@@ -109,13 +109,12 @@
             </el-select>
           </el-form-item>
           <el-form-item v-if="form.game === 'smash'" label="Color">
-            <el-select v-model="player.character" value-key="name">
+            <el-select v-model="player.color">
               <el-option
-                v-for="character in currentCast"
-                :key="character.name"
-                :label="character.name"
-                :value="character"
-              />
+                v-for="index in 8" :key="index"
+                :label="`${index - 1}`"
+                :value="index - 1"
+              /> 
             </el-select>
           </el-form-item>
           <el-form-item v-if="player.character" label="Override Data  ">
@@ -163,11 +162,10 @@ export default {
         entrants: "",
         date: "",
         playerData: {
-          first: { name: "", prefix: "", twitter: "", character: {}, override: false },
-          second: { name: "", prefix: "", twitter: "", character: {}, override: false },
-          third: { name: "", prefix: "", twitter: "", character: {}, override: false },
+          first: { name: "", prefix: "", twitter: "", character: {}, color: '0', override: false },
+          second: { name: "", prefix: "", twitter: "", character: {}, color: '0',override: false },
+          third: { name: "", prefix: "", twitter: "", character: {}, color: '0', override: false },
         },
-        color: "",
       },
       currentCast: [],
     };
