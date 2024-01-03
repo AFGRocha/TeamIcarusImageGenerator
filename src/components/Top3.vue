@@ -63,6 +63,20 @@
           >
             <img class="select-image" src="../assets/games/GGST_Logo.png" />
           </el-option>
+          <el-option
+            class="select-option"
+            label="Tekken 8"
+            value="tekken8"
+          >
+            <img class="select-image" src="../assets/games/Tekken8_Logo.png" />
+          </el-option>
+          <el-option
+            class="select-option"
+            label="Under Night In-Birth Sys:Celes"
+            value="uni2"
+          >
+            <img class="select-image" src="../assets/games/UNI2_Logo.png" />
+          </el-option>
         </div>
       </el-select>
     </el-form-item>
@@ -104,6 +118,23 @@
               />
             </el-select>
           </el-form-item>
+          <el-form-item v-if="player.character" label="Override Data  ">
+            <el-switch v-model="player.override"/>
+          </el-form-item>
+          <div v-if="player.override">
+              <el-form-item v-if="player.character" label="Width">
+                <el-input v-model="player.character.renderDetails.width" />
+              </el-form-item>
+               <el-form-item v-if="player.character" label="Height">
+                <el-input v-model="player.character.renderDetails.height" />
+               </el-form-item>
+               <el-form-item v-if="player.character" label="Pos X">
+                <el-input v-model="player.character.renderDetails.posX" />
+               </el-form-item>
+               <el-form-item v-if="player.character" label="Pos Y">
+                <el-input v-model="player.character.renderDetails.posY" />
+               </el-form-item>
+            </div>
         </div>
       </div>
       <div class="generate-button-section">
@@ -132,9 +163,9 @@ export default {
         entrants: "",
         date: "",
         playerData: {
-          first: { name: "", prefix: "", twitter: "", character: {} },
-          second: { name: "", prefix: "", twitter: "", character: {} },
-          third: { name: "", prefix: "", twitter: "", character: {} },
+          first: { name: "", prefix: "", twitter: "", character: {}, override: false },
+          second: { name: "", prefix: "", twitter: "", character: {}, override: false },
+          third: { name: "", prefix: "", twitter: "", character: {}, override: false },
         },
         color: "",
       },
