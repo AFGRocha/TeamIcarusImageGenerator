@@ -148,6 +148,8 @@ import smashCharNames from "../characters/smash_char_list.json";
 import sf6CharNames from "../characters/sf6_char_list.json";
 import gbvsrCharNames from "../characters/gbvsr_char_list.json";
 import ggstCharNames from "../characters/ggst_char_list.json";
+import uni2CharNames from "../characters/uni2_char_list.json";
+import tekken8CharNames from "../characters/tekken8_char_list.json";
 
 export default {
   name: "Top3",
@@ -168,6 +170,7 @@ export default {
         },
       },
       currentCast: [],
+      color: ""
     };
   },
   methods: {
@@ -175,6 +178,10 @@ export default {
       switch (this.form.game) {
         case "smash":
           this.currentCast = smashCharNames.characters;
+          if(this.form.event == 'Smash Na Ivicta')
+            this.form.color = "#384695";
+          else
+            this.form.color = "#b71115";
           break;
         case "sf6":
           this.currentCast = sf6CharNames.characters;
@@ -187,6 +194,14 @@ export default {
         case "ggst":
           this.currentCast = ggstCharNames.characters;
           this.form.color = "#be262c";
+          break;
+        case "uni2":
+          this.currentCast = uni2CharNames.characters;
+          this.form.color = "#78008a";
+          break;
+        case "tekken8":
+          this.currentCast = tekken8CharNames.characters;
+          this.form.color = "#ce0d4e";
           break;
         default:
           this.currentCast = [];
