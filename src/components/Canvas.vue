@@ -61,9 +61,9 @@ export default {
             ctx.drawImage(this.imgBackground, 0, 0, canvas.width, canvas.height);
 
             //Mask first place character
-            const char1Canvas = this.maskCharacter(imgFirstCharacter, this.firstCharMask, form.playerData.first.character.renderDetails, 0)
-            const char2Canvas = this.maskCharacter(imgSecondCharacter, this.secondCharMask, form.playerData.second.character.renderDetails, 469)
-            const char3Canvas = this.maskCharacter(imgThirdCharacter, this.thirdCharMask, form.playerData.third.character.renderDetails, 940)
+            const char1Canvas = this.maskCharacter(imgFirstCharacter, this.firstCharMask, form.playerData.first.character.renderDetails, 0, form.game)
+            const char2Canvas = this.maskCharacter(imgSecondCharacter, this.secondCharMask, form.playerData.second.character.renderDetails, 469, form.game)
+            const char3Canvas = this.maskCharacter(imgThirdCharacter, this.thirdCharMask, form.playerData.third.character.renderDetails, 940, form.game)
 
             ctx.drawImage(char1Canvas, 0, 0, canvas.width, canvas.height);
             ctx.drawImage(char2Canvas, 0, 0, canvas.width, canvas.height);
@@ -165,11 +165,19 @@ export default {
       // Simulate a click on the link to trigger the download
       link.click();
     }, 
-    maskCharacter(image, mask, renderDetails, xModifier) {
+    maskCharacter(image, mask, renderDetails, xModifier, game) {
       const offscreenCanvas = document.createElement("canvas");
       offscreenCanvas.width = this.$refs.myCanvas.width;
       offscreenCanvas.height = this.$refs.myCanvas.height;
       const offscreenCtx = offscreenCanvas.getContext("2d");
+
+      if(game != 'sf6') {
+        offscreenCtx.drawImage(image, renderDetails.posX + xModifier + 30, renderDetails.posY + 20, renderDetails.width, renderDetails.height);
+        offscreenCtx.globalCompositeOperation = "source-in";
+        offscreenCtx.drawImage(mask, 0, 0, this.$refs.myCanvas.width, this.$refs.myCanvas.height);
+        offscreenCtx.globalCompositeOperation = "source-over";
+      }
+      
 
       offscreenCtx.drawImage(image, renderDetails.posX + xModifier, renderDetails.posY, renderDetails.width, renderDetails.height);
       offscreenCtx.globalCompositeOperation = "destination-in";
