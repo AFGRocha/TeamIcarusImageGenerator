@@ -178,7 +178,7 @@ export default {
       switch (this.form.game) {
         case "smash":
           this.currentCast = smashCharNames.characters;
-          if(this.form.event == 'Smash Na Ivicta')
+          if(this.form.event == 'Smash Na Invicta')
             this.form.color = "#384695";
           else
             this.form.color = "#b71115";
