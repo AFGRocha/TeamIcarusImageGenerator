@@ -180,16 +180,17 @@ export default {
       offscreenCanvas.width = this.$refs.myCanvas.width;
       offscreenCanvas.height = this.$refs.myCanvas.height;
       const offscreenCtx = offscreenCanvas.getContext("2d");
-
+      
       if(game != 'sf6') {
-        offscreenCtx.drawImage(image, renderDetails.posX + xModifier + 30, renderDetails.posY + 20, renderDetails.width, renderDetails.height);
+        console.log('entra');
+        offscreenCtx.drawImage(image, parseInt(renderDetails.posX) + xModifier + 20, parseInt(renderDetails.posY) + 10, renderDetails.width, renderDetails.height);
         offscreenCtx.globalCompositeOperation = "source-in";
         offscreenCtx.drawImage(mask, 0, 0, this.$refs.myCanvas.width, this.$refs.myCanvas.height);
         offscreenCtx.globalCompositeOperation = "source-over";
       }
       
 
-      offscreenCtx.drawImage(image, renderDetails.posX + xModifier, renderDetails.posY, renderDetails.width, renderDetails.height);
+      offscreenCtx.drawImage(image, parseInt(renderDetails.posX)  + xModifier, renderDetails.posY, renderDetails.width, renderDetails.height);
       offscreenCtx.globalCompositeOperation = "destination-in";
       offscreenCtx.drawImage(mask, 0, 0, this.$refs.myCanvas.width, this.$refs.myCanvas.height);
       offscreenCtx.globalCompositeOperation = "source-over";
