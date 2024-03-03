@@ -35,7 +35,7 @@ async function createWindow() {
   }
   win.maximize()
   win.setTitle('Team Icarus Image Generator');
-  win.setIcon(app.getAppPath() + '/assets/Icarus1.png')
+  win.setIcon('/assets/Icarus1.png')
 }
 
 // Quit when all windows are closed.
