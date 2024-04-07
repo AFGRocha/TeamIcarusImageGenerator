@@ -44,7 +44,7 @@
 	  {"name": "King Dedede", "renderDetails": {"width": 520, "height": 520, "posX": 0, "posY": 25}},
 	  {"name": "Olimar", "renderDetails": {"width": 520, "height": 520, "posX": 0, "posY": 25}},
 	  {"name": "Lucario", "renderDetails": {"width": 520, "height": 520, "posX": 0, "posY": 25}},
-	  {"name": "ROB.", "renderDetails": {"width": 520, "height": 520, "posX": 0, "posY": 25}},
+	  {"name": "ROB", "renderDetails": {"width": 520, "height": 520, "posX": 0, "posY": 25}},
 	  {"name": "Toon Link", "renderDetails": {"width": 520, "height": 520, "posX": 0, "posY": 25}},
 	  {"name": "Wolf", "renderDetails": {"width": 520, "height": 520, "posX": 0, "posY": 25}},
 	  {"name": "Villager", "renderDetails": {"width": 520, "height": 520, "posX": 0, "posY": 25}},
