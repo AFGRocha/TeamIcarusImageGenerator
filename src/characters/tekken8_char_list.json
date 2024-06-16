@@ -1,11 +1,11 @@
 {
     "characters": [
-      {"name": "Nina", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+      {"name": "Nina", "renderDetails": {"width": 1220, "height": 971, "posX": -630, "posY": 60}},
       {"name": "Kazuya", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
       {"name": "Jin", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
       {"name": "Paul", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
       {"name": "Law", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
-      {"name": "King", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+      {"name": "King", "renderDetails": {"width": 1220, "height": 898, "posX": -550, "posY": 60}},
       {"name": "Lars", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
       {"name": "Jack-8", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
       {"name": "Seth", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
@@ -32,7 +32,7 @@
       {"name": "Alisa", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
       {"name": "Devil Jin", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
       {"name": "Victor", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
-      {"name": "Reina", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}}
+      {"name": "Reina", "renderDetails": {"width": 1220, "height": 1193, "posX": -655, "posY": 50}}
     ]
   }
   

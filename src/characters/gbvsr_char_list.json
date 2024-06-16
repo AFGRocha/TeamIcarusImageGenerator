@@ -30,7 +30,8 @@
 	  {"name": "Nier", "renderDetails": {"width": 1000, "height": 751, "posX": -220, "posY": -50}},
 	  {"name": "Lucilius", "renderDetails": {"width": 1151, "height": 751, "posX": -280, "posY": -60}},
 	  {"name": "2B", "renderDetails": {"width": 535, "height": 751, "posX": 10, "posY": -60}},
-	  {"name": "Vane", "renderDetails": {"width": 935, "height": 751, "posX": -290, "posY": -40}}
+	  {"name": "Vane", "renderDetails": {"width": 935, "height": 751, "posX": -290, "posY": -40}},
+	  {"name": "Beatrix", "renderDetails": {"width": 935, "height": 751, "posX": -290, "posY": -40}}
 	]
   }
   
