@@ -3,7 +3,7 @@
       {"name": "Hyde", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
       {"name": "Linne", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
       {"name": "Waldstein", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
-      {"name": "Carmine", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+      {"name": "Carmine", "renderDetails": {"width": 550, "height": 1170, "posX": -80, "posY": 40}},
       {"name": "Orie", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
       {"name": "Gordeau", "renderDetails": {"width": 1240, "height": 1384, "posX":-410, "posY": -350}},
       {"name": "Merkava", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
@@ -17,13 +17,14 @@
       {"name": "Phonon", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
       {"name": "Enkidu", "renderDetails": {"width": 940, "height": 1127, "posX": -240, "posY": 40}},
       {"name": "Wagner", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
-      {"name": "Mika", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+      {"name": "Mika", "renderDetails": {"width": 940, "height": 1174, "posX": -140, "posY": -400}},
       {"name": "Eltnum", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
       {"name": "Akatsuki", "renderDetails": {"width": 480, "height": 1239, "posX": 0, "posY": 50}},
       {"name": "Londrekia", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
       {"name": "Tsurugi", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
       {"name": "Kaguya", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
-      {"name": "Kuon", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}}
+      {"name": "Kuon", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+      {"name": "Uzuki", "renderDetails": {"width": 977, "height": 1163, "posX": -165, "posY": -200}}
     ]
   }
   

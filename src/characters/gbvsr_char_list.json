@@ -31,7 +31,8 @@
 	  {"name": "Lucilius", "renderDetails": {"width": 1151, "height": 751, "posX": -280, "posY": -60}},
 	  {"name": "2B", "renderDetails": {"width": 535, "height": 751, "posX": 10, "posY": -60}},
 	  {"name": "Vane", "renderDetails": {"width": 935, "height": 751, "posX": -290, "posY": -40}},
-	  {"name": "Beatrix", "renderDetails": {"width": 935, "height": 751, "posX": -290, "posY": -40}}
+	  {"name": "Beatrix", "renderDetails": {"width": 935, "height": 751, "posX": -290, "posY": -40}},
+	  {"name": "Versusia", "renderDetails": {"width": 770, "height": 750, "posX": -150, "posY": -50}}
 	]
   }
   

@@ -1,6 +1,8 @@
 {
 	"characters": [
 	  {"name": "AKI", "renderDetails": {"width": 885, "height": 867, "posX": -290, "posY": -130}},
+	  {"name": "Akuma", "renderDetails": {"width": 885, "height": 867, "posX": -290, "posY": -130}},
+	  {"name": "Bison", "renderDetails": {"width": 1554, "height": 1178, "posX": -530, "posY": -90}},
 	  {"name": "Blanka", "renderDetails": {"width": 885, "height": 867, "posX": -180, "posY": -110}},
 	  {"name": "Cammy", "renderDetails": {"width": 841, "height": 951, "posX": -170, "posY": 50}},
 	  {"name": "Chun-Li", "renderDetails": {"width": 730, "height": 1345, "posX": -100, "posY": -150}},
