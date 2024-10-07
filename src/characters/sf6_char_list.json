@@ -1,7 +1,7 @@
 {
 	"characters": [
 	  {"name": "AKI", "renderDetails": {"width": 885, "height": 867, "posX": -290, "posY": -130}},
-	  {"name": "Akuma", "renderDetails": {"width": 885, "height": 867, "posX": -290, "posY": -130}},
+	  {"name": "Akuma", "renderDetails": {"width": 946, "height": 1196, "posX": -200, "posY": -130}},
 	  {"name": "Bison", "renderDetails": {"width": 1554, "height": 1178, "posX": -530, "posY": -90}},
 	  {"name": "Blanka", "renderDetails": {"width": 885, "height": 867, "posX": -180, "posY": -110}},
 	  {"name": "Cammy", "renderDetails": {"width": 841, "height": 951, "posX": -170, "posY": 50}},
@@ -20,6 +20,7 @@
 	  {"name": "Luke", "renderDetails": {"width": 687, "height": 1100, "posX": -30, "posY": -50}},
 	  {"name": "Manon", "renderDetails": {"width": 1554, "height": 1178, "posX": -530, "posY": -90}},
 	  {"name": "Marisa", "renderDetails": {"width": 880, "height": 1167, "posX": -80, "posY": -150}},
+	  {"name": "Terry", "renderDetails": {"width": 861, "height": 1305, "posX": -265, "posY": -140}},
 	  {"name": "Rashid", "renderDetails": {"width": 1320, "height": 1461, "posX": -300, "posY": -350}},
 	  {"name": "Ryu", "renderDetails": {"width": 710, "height": 1108, "posX": -100, "posY": -30}},
 	  {"name": "Zangief", "renderDetails": {"width": 816, "height": 941, "posX": -170, "posY": -30}}
