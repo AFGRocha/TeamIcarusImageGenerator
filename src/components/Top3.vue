@@ -45,6 +45,14 @@
         >
           <img class="select-image" src="../assets/games/SSBU_Logo.png" />
         </el-option>
+        <el-option
+          v-if="form.event === 'Smash Na Invicta'"
+          class="select-option"
+          label="Rivals 2"
+          value="roa2"
+        >
+          <img class="select-image" src="../assets/games/ROA2_Logo.png" />
+        </el-option>
         <div v-else id="fgc games">
           <el-option class="select-option" label="Street Fighter 6" value="sf6">
             <img class="select-image" src="../assets/games/SF6_Logo.png" />
@@ -117,6 +125,15 @@
               /> 
             </el-select>
           </el-form-item>
+          <el-form-item v-if="form.game === 'roa2'" label="Color">
+            <el-select v-model="player.color">
+              <el-option
+                v-for="index in 40" :key="index"
+                :label="`${index - 1}`"
+                :value="index - 1"
+              /> 
+            </el-select>
+          </el-form-item>
           <el-form-item v-if="player.character" label="Override Data  ">
             <el-switch v-model="player.override"/>
           </el-form-item>
@@ -150,6 +167,7 @@ import gbvsrCharNames from "../characters/gbvsr_char_list.json";
 import ggstCharNames from "../characters/ggst_char_list.json";
 import uni2CharNames from "../characters/uni2_char_list.json";
 import tekken8CharNames from "../characters/tekken8_char_list.json";
+import roa2CharNames from "../characters/roa2_char_list.json"
 
 export default {
   name: "Top3",
@@ -202,6 +220,10 @@ export default {
         case "tekken8":
           this.currentCast = tekken8CharNames.characters;
           this.form.color = "#ce0d4e";
+          break;
+        case "roa2":
+          this.currentCast = roa2CharNames.characters;
+          this.form.color = "#384695";
           break;
         default:
           this.currentCast = [];

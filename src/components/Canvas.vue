@@ -50,8 +50,11 @@ export default {
         firstPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.first.character.name}_0${form.playerData.first.color}.png`);
         secondPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.second.character.name}_0${form.playerData.second.color}.png`);
         thirdPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.third.character.name}_0${form.playerData.third.color}.png`);
-      } 
-      else {
+      } else if (form.game === 'roa2') {
+        firstPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.first.character.name}_${form.playerData.first.color}.png`);
+        secondPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.second.character.name}_${form.playerData.second.color}.png`);
+        thirdPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.third.character.name}_${form.playerData.third.color}.png`);
+      } else {
         firstPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.first.character.name}.png`);
         secondPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.second.character.name}.png`);
         thirdPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.third.character.name}.png`);

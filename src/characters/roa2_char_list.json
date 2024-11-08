@@ -1,0 +1,15 @@
+{
+	"characters": [
+	  {"name": "Clairen", "renderDetails": {"width": 716, "height": 716, "posX": -180, "posY": -30}},
+	  {"name": "Fleet", "renderDetails": {"width": 716, "height": 716, "posX": -180, "posY": 0}},
+	  {"name": "Forsburn", "renderDetails": {"width": 716, "height": 716, "posX": -200, "posY": -30}},
+	  {"name": "Kragg", "renderDetails": {"width": 716, "height": 716, "posX": -180, "posY": -90}},
+	  {"name": "Loxodont", "renderDetails": {"width": 716, "height": 716, "posX": -180, "posY": -40}},
+	  {"name": "Maypul", "renderDetails": {"width": 716, "height": 716, "posX": -180, "posY": -30}},
+	  {"name": "Orcane", "renderDetails": {"width": 716, "height": 716, "posX": -140, "posY": 0}},
+	  {"name": "Ranno", "renderDetails": {"width": 716, "height": 716, "posX": -100, "posY": 35}},
+	  {"name": "Wrastor", "renderDetails": {"width": 716, "height": 716, "posX": -140, "posY": 15}},
+	  {"name": "Zetterburn", "renderDetails": {"width": 716, "height": 716, "posX": -180, "posY": -40}}
+	]
+  }
+  
