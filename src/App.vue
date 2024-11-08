@@ -6,6 +6,14 @@
   </el-tabs>
   <Top3 v-show="activeTab === 'top3'" @generate="handleGenerateClick"/>
   <Canvas ref="canvas" />
+
+  <!-- Isto é bem parvo-->
+  <div class="boldfont_loader">
+    The Bold Font Loader
+  </div>
+  <div class="bebasneue_loader">
+    Bebas Neue Loader asdsa
+  </div>
 </template>
 
 <script>
@@ -56,7 +64,17 @@ body {
   float: right;
 }
 
+
 @import url('https://fonts.cdnfonts.com/css/the-bold-font');
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+.boldfont_loader {
+  opacity: 0;
+  font-family: 'The Bold Font';
+}
+.bebasneue_loader {
+  opacity: 0;
+  font-family: 'Bebas Neue';
+}
 </style>
