@@ -34,7 +34,8 @@
       {"name": "Victor", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
       {"name": "Reina", "renderDetails": {"width": 1220, "height": 1193, "posX": -655, "posY": 50}},
       {"name": "Eddy", "renderDetails": {"width": 1220, "height": 1193, "posX": -655, "posY": 50}},
-      {"name": "Lidia", "renderDetails": {"width": 1220, "height": 1193, "posX": -655, "posY": 50}}
+      {"name": "Lidia", "renderDetails": {"width": 0, "height": 0, "posX": 0, "posY": 0}},
+      {"name": "Clive", "renderDetails": {"width": 1220, "height": 1193, "posX": -600, "posY": 20}}
     ]
   }
   
