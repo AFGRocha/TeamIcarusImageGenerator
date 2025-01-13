@@ -4,7 +4,8 @@
     <el-tab-pane label="Top 3" name="top3" />
     <el-tab-pane label="Thumbnails" name="thumbnails" />
   </el-tabs>
-  <Top3 v-show="activeTab === 'top3'" @generate="handleGenerateClick"/>
+  <Top3 v-show="activeTab === 'top3'" @generate="handleGenerateTop3"/>
+  <Thumbnails v-show="activeTab === 'thumbnails'" @generate="handleGenerateThumbnail"/>
   <Canvas ref="canvas" />
 
   <!-- Isto é bem parvo-->
@@ -19,12 +20,14 @@
 <script>
 import Top3 from "./components/Top3.vue";
 import Canvas from "./components/Canvas.vue"
+import Thumbnails from './components/Thumbnails.vue';
 
 export default {
   name: "App",
   components: {
     Top3,
-    Canvas
+    Canvas,
+    Thumbnails
   },
   data() {
     return {
@@ -32,8 +35,11 @@ export default {
     };
   },
   methods: {
-    handleGenerateClick(form) {
-      this.$refs.canvas.generate(form);
+    handleGenerateTop3(form) {
+      this.$refs.canvas.generateTop3(form);
+    },
+    handleGenerateThumbnail(form) {
+      this.$refs.canvas.generateThumbnail(form);
     },
   },
 };

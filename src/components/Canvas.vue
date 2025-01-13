@@ -15,6 +15,8 @@ export default {
       firstCharMask: new Image(),
       secondCharMask: new Image(),
       thirdCharMask: new Image(),
+      p1ThumbnailMask: new Image(),
+      p2ThumbnailMask: new Image(),
       aniplayLogo: new Image(),
       qdLogo: new Image(),
       twitterIcon: new Image(),
@@ -25,15 +27,18 @@ export default {
     this.firstCharMask.src = require("../assets/mask/mask1.png");
     this.secondCharMask.src = require("../assets/mask/mask2.png");
     this.thirdCharMask.src = require("../assets/mask/mask3.png");
+    this.p1ThumbnailMask.src = require("../assets/mask/maskThumbnailp1.png");
+    this.p2ThumbnailMask.src = require("../assets/mask/maskThumbnailp2.png");
     this.aniplayLogo.src = require("../assets/venues/aniplay.png");
     this.qdLogo.src = require("../assets/venues/qd.png");
     this.twitterIcon.src =  require("../assets/twitter_icon.png");
   },
   methods: {
-    async generate(form) {
-      console.log(form)
+    async generateTop3(form) {
       // Get the canvas element and its context using $refs
       const canvas = this.$refs.myCanvas;
+      canvas.width = 1674
+      canvas.height = 739
       const ctx = canvas.getContext("2d");
 
       this.imgBackground.src = require(`../assets/backgrounds/${form.event}_${form.game}_background.png`);
@@ -163,6 +168,100 @@ export default {
       }
     
     },
+    async generateThumbnail(form) {
+      // Get the canvas element and its context using $refs
+      const canvas = this.$refs.myCanvas;
+      canvas.width = 1280
+      canvas.height = 720
+      const ctx = canvas.getContext("2d");
+
+      this.imgBackground.src = require(`../assets/thumbnails/backgrounds/default.png`);
+      if(form.game === 'smash' || form.game === 'roa2') {
+        this.imgForeground.src = require(`../assets/thumbnails/foregrounds/${form.event}_foreground.png`);
+      } else {
+        this.imgForeground.src = require(`../assets/thumbnails/foregrounds/${form.event}_${form.game}_foreground.png`);
+      }
+      
+      
+
+      let player1Char = new Image();
+      let player2Char = new Image();
+      if (form.game === 'smash') {
+        player1Char.src = require(`../assets/characters/${form.game}/${form.playerData.first.character.name}_0${form.playerData.first.color}.png`);
+        player2Char.src = require(`../assets/characters/${form.game}/${form.playerData.second.character.name}_0${form.playerData.second.color}.png`);
+      } else if (form.game === 'roa2') {
+        player1Char.src = require(`../assets/characters/${form.game}/${form.playerData.first.character.name}_${form.playerData.first.color}.png`);
+        player2Char.src = require(`../assets/characters/${form.game}/${form.playerData.second.character.name}_${form.playerData.second.color}.png`);
+      } else {
+        player1Char.src = require(`../assets/characters/${form.game}/${form.playerData.first.character.name}.png`);
+        player2Char.src = require(`../assets/characters/${form.game}/${form.playerData.second.character.name}.png`);
+      }
+
+      const imagesToLoad = [this.imgBackground, this.imgForeground, player1Char, player2Char]
+      let loadedCounter = 0;
+      for (let i = 0; i < imagesToLoad.length; i++) {
+        imagesToLoad[i].onload = () => {
+          loadedCounter++
+          if(loadedCounter == imagesToLoad.length) {
+            ctx.drawImage(this.imgBackground, 0, 0, canvas.width, canvas.height);
+            let player1 = this.thumbnailMask(player1Char, this.p1ThumbnailMask, form.playerData.first.character.renderDetails, -200, form.game)
+            ctx.drawImage(player1, 0, 0, canvas.width, canvas.height);
+            let player2 = this.thumbnailMask(player2Char, this.p2ThumbnailMask, form.playerData.second.character.renderDetails, 500, form.game)
+            ctx.drawImage(player2, 0, 0, canvas.width, canvas.height);
+            ctx.drawImage(this.imgForeground, 0, 0, canvas.width, canvas.height);
+
+            
+
+            const textCanvas = document.createElement("canvas");
+            textCanvas.width = this.$refs.myCanvas.width;
+            textCanvas.height = this.$refs.myCanvas.height;
+            const textCanvasCtx = textCanvas.getContext("2d");
+            textCanvasCtx.rotate(-2 * Math.PI / 180);
+            textCanvasCtx.textAlign = "center";
+            //P1 Name
+            textCanvasCtx.font = 'italic 105px "Bebas Neue"'
+            textCanvasCtx.fillStyle = "rgba(0, 0, 0, 0.5)";
+            textCanvasCtx.fillText(form.playerData.first.name, 305, 110);
+            textCanvasCtx.fillStyle = "#FFFFFF";
+            textCanvasCtx.fillText(form.playerData.first.name, 300, 105);
+
+            //P2 Name
+            textCanvasCtx.font = 'italic 105px "Bebas Neue"'
+            textCanvasCtx.fillStyle = "rgba(0, 0, 0, 0.5)";
+            textCanvasCtx.fillText(form.playerData.second.name, 965, 130);
+            textCanvasCtx.fillStyle = "#FFFFFF";
+            textCanvasCtx.fillText(form.playerData.second.name, 960, 125);
+
+            //Round
+            if(textCanvasCtx.measureText(form.round).width > 640) {
+              textCanvasCtx.font = 'italic 80px "Bebas Neue"'
+              textCanvasCtx.fillStyle = "rgba(0, 0, 0, 0.5)";
+              textCanvasCtx.fillText(form.round, 290, 710);
+              textCanvasCtx.fillStyle = "#FFFFFF";
+              textCanvasCtx.fillText(form.round, 285, 705);
+            } else {
+              textCanvasCtx.font = 'italic 105px "Bebas Neue"'
+              textCanvasCtx.fillStyle = "rgba(0, 0, 0, 0.5)";
+              textCanvasCtx.fillText(form.round, 290, 720);
+              textCanvasCtx.fillStyle = "#FFFFFF";
+              textCanvasCtx.fillText(form.round, 285, 715);
+            }
+
+            //Date
+            textCanvasCtx.font = 'italic 105px "Bebas Neue"'
+            textCanvasCtx.fillStyle = "rgba(0, 0, 0, 0.5)";
+            textCanvasCtx.fillText(form.date, 965, 735);
+            textCanvasCtx.fillStyle = "#FFFFFF";
+            textCanvasCtx.fillText(form.date, 960, 730);
+
+            ctx.drawImage(textCanvas,0,0, canvas.width, canvas.height)
+          }
+        }
+      }
+
+      this.showSave = true;
+
+    },
     save() {
       const dataURL = this.$refs.myCanvas.toDataURL();
 
@@ -185,7 +284,6 @@ export default {
       const offscreenCtx = offscreenCanvas.getContext("2d");
       
       if(game != 'sf6') {
-        console.log('entra');
         offscreenCtx.drawImage(image, parseInt(renderDetails.posX) + xModifier + 20, parseInt(renderDetails.posY) + 10, renderDetails.width, renderDetails.height);
         offscreenCtx.globalCompositeOperation = "source-in";
         offscreenCtx.drawImage(mask, 0, 0, this.$refs.myCanvas.width, this.$refs.myCanvas.height);
@@ -198,6 +296,29 @@ export default {
       offscreenCtx.drawImage(mask, 0, 0, this.$refs.myCanvas.width, this.$refs.myCanvas.height);
       offscreenCtx.globalCompositeOperation = "source-over";
 
+      return offscreenCanvas
+    },
+    thumbnailMask(image, mask, renderDetails, xModifier, game) {
+      let scaleModifier = 450;
+      let posModifierX = 0;
+      let posModifierY = 0;
+
+      if(game !== 'smash' || game !== 'roa2') {
+        scaleModifier = 0
+        posModifierX = 250;
+        posModifierY = 100;
+      }
+        
+
+      const offscreenCanvas = document.createElement("canvas");
+      offscreenCanvas.width = this.$refs.myCanvas.width;
+      offscreenCanvas.height = this.$refs.myCanvas.height;
+      const offscreenCtx = offscreenCanvas.getContext("2d");
+
+      offscreenCtx.drawImage(image, parseInt(renderDetails.posX) + xModifier + posModifierX, parseInt(renderDetails.posY) - 50 + posModifierY, renderDetails.width + scaleModifier, renderDetails.height + scaleModifier);
+      offscreenCtx.globalCompositeOperation = "destination-in";
+      offscreenCtx.drawImage(mask, 0, 0, this.$refs.myCanvas.width, this.$refs.myCanvas.height);
+      offscreenCtx.globalCompositeOperation = "source-over";
       return offscreenCanvas
     }
   },

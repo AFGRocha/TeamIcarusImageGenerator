@@ -53,7 +53,7 @@
         >
           <img class="select-image" src="../assets/games/ROA2_Logo.png" />
         </el-option>
-        <div v-else id="fgc games">
+        <div v-if="form.event === 'Invicta Fighters'">
           <el-option class="select-option" label="Street Fighter 6" value="sf6">
             <img class="select-image" src="../assets/games/SF6_Logo.png" />
           </el-option>
