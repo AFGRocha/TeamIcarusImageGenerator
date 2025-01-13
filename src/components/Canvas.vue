@@ -272,7 +272,7 @@ export default {
       link.href = dataURL;
 
       // Specify the filename for the saved image
-      link.download = "generated_top3.png";
+      link.download = "generated_TI_image.png";
 
       // Simulate a click on the link to trigger the download
       link.click();
@@ -303,7 +303,7 @@ export default {
       let posModifierX = 0;
       let posModifierY = 0;
 
-      if(game !== 'smash' || game !== 'roa2') {
+      if(game !== 'smash' && game !== 'roa2') {
         scaleModifier = 0
         posModifierX = 250;
         posModifierY = 100;
