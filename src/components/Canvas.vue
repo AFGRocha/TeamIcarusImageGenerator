@@ -19,6 +19,7 @@ export default {
       p2ThumbnailMask: new Image(),
       aniplayLogo: new Image(),
       qdLogo: new Image(),
+      drawstepLogo: new Image(),
       twitterIcon: new Image(),
       showSave: false,
     };
@@ -31,6 +32,7 @@ export default {
     this.p2ThumbnailMask.src = require("../assets/mask/maskThumbnailp2.png");
     this.aniplayLogo.src = require("../assets/venues/aniplay.png");
     this.qdLogo.src = require("../assets/venues/qd.png");
+    this.drawstepLogo.src = require("../assets/venues/drawstep.png");
     this.twitterIcon.src =  require("../assets/twitter_icon.png");
   },
   methods: {
@@ -137,12 +139,13 @@ export default {
             }
 
             //Tournament name with number
-            ctx.font = '20px "The Bold Font"'
+            ctx.font = form.event == "Quebra Comandos" && form.edition >= 100 ? '18px "The Bold Font"' : '20px "The Bold Font"'
             ctx.fillStyle = "#FFFFFF";
             ctx.fillText(`${form.event} #${form.edition}`, 1557, 235);
 
             //Start.gg
-            ctx.font = '22px "Bebas Neue"'
+            ctx.font = 
+            ctx.font = form.event == "Quebra Comandos" && form.edition >= 100 ? '20px "Bebas Neue"' : '22px "Bebas Neue"'
             ctx.fillStyle = "#FFFFFF";
             ctx.fillText(`start.gg/`, 1557 - ctx.measureText(form.page).width / 2, 634);
             ctx.fillStyle = form.color;
@@ -161,7 +164,12 @@ export default {
 
 
             //Venue logo
-            ctx.drawImage(this[form.venue + 'Logo'], 1433, 490);
+            if(form.venue === 'drawstep') {
+              ctx.drawImage(this[form.venue + 'Logo'], 1495, 490, 120, 119);
+
+            } else {
+              ctx.drawImage(this[form.venue + 'Logo'], 1433, 490);
+            }
             this.showSave = true;
           }
         }
@@ -283,7 +291,7 @@ export default {
       offscreenCanvas.height = this.$refs.myCanvas.height;
       const offscreenCtx = offscreenCanvas.getContext("2d");
       
-      if(game != 'sf6') {
+      if(game != 'sf6' && game != 'cotw') {
         offscreenCtx.drawImage(image, parseInt(renderDetails.posX) + xModifier + 20, parseInt(renderDetails.posY) + 10, renderDetails.width, renderDetails.height);
         offscreenCtx.globalCompositeOperation = "source-in";
         offscreenCtx.drawImage(mask, 0, 0, this.$refs.myCanvas.width, this.$refs.myCanvas.height);

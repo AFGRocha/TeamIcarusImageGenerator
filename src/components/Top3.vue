@@ -7,6 +7,7 @@
           <el-option value="Smash Na Invicta" />
           <el-option value="Quebra Comandos" />
           <el-option value="Invicta Fighters" />
+          <el-option value="Bujas and Braga" />
         </el-select>
       </el-form-item>
       <el-form-item label="Edition">
@@ -29,6 +30,9 @@
         </el-option>
         <el-option class="select-option" label="Quebra-Dados" value="qd">
           <img class="select-image" src="../assets/venues/qd_black.png" />
+        </el-option>
+        <el-option class="select-option" label="Drawstep" value="drawstep">
+          <img class="select-image" src="../assets/venues/drawstep.png" />
         </el-option>
       </el-select>
     </el-form-item>
@@ -84,6 +88,13 @@
             value="uni2"
           >
             <img class="select-image" src="../assets/games/UNI2_Logo.png" />
+          </el-option>
+          <el-option
+            class="select-option"
+            label="Fatal Fury: City of The Wolves"
+            value="cotw"
+          >
+            <img class="select-image" src="../assets/games/COTW_Logo.png" />
           </el-option>
         </div>
       </el-select>
@@ -167,7 +178,8 @@ import gbvsrCharNames from "../characters/gbvsr_char_list.json";
 import ggstCharNames from "../characters/ggst_char_list.json";
 import uni2CharNames from "../characters/uni2_char_list.json";
 import tekken8CharNames from "../characters/tekken8_char_list.json";
-import roa2CharNames from "../characters/roa2_char_list.json"
+import roa2CharNames from "../characters/roa2_char_list.json";
+import cotwCharNames from "../characters/cotw_char_list.json";
 
 export default {
   name: "Top3",
@@ -224,6 +236,10 @@ export default {
         case "roa2":
           this.currentCast = roa2CharNames.characters;
           this.form.color = "#384695";
+          break;
+        case "cotw":
+          this.currentCast = cotwCharNames.characters;
+          this.form.color = "#eb6c12";
           break;
         default:
           this.currentCast = [];
