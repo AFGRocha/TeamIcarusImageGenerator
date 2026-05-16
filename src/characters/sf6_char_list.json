@@ -2,6 +2,7 @@
 	"characters": [
 	  {"name": "AKI", "renderDetails": {"width": 885, "height": 867, "posX": -290, "posY": -130}},
 	  {"name": "Akuma", "renderDetails": {"width": 946, "height": 1196, "posX": -200, "posY": -130}},
+	  {"name": "Alex", "renderDetails": {"width": 878, "height": 1100, "posX": -180, "posY": -50}},
 	  {"name": "Bison", "renderDetails": {"width": 1554, "height": 1178, "posX": -530, "posY": -90}},
 	  {"name": "Blanka", "renderDetails": {"width": 885, "height": 867, "posX": -180, "posY": -110}},
 	  {"name": "Cammy", "renderDetails": {"width": 841, "height": 951, "posX": -170, "posY": 50}},
@@ -9,8 +10,10 @@
 	  {"name": "Dee Jay", "renderDetails": {"width": 992, "height": 822, "posX": -400, "posY": 0}},
 	  {"name": "Dhalsim", "renderDetails": {"width": 829, "height": 806, "posX": -140, "posY": 0}},
 	  {"name": "Ed", "renderDetails": {"width": 703, "height": 862, "posX": -150, "posY": 0}},
+	  {"name": "Elena", "renderDetails": {"width": 954, "height": 1100, "posX": -200, "posY": -50}},
 	  {"name": "Guile", "renderDetails": {"width": 780, "height": 1127, "posX": -140, "posY": 60}},
 	  {"name": "Honda", "renderDetails": {"width": 1204, "height": 1402, "posX": -350, "posY": -350}},
+	  {"name": "Ingrid", "renderDetails": {"width": 1036, "height": 1100, "posX": -250, "posY": -100}},
 	  {"name": "Jamie", "renderDetails": {"width": 915, "height": 1259, "posX": -100, "posY": -40}},
 	  {"name": "JP", "renderDetails": {"width": 608, "height": 1175, "posX": -50, "posY": 0}},
 	  {"name": "Juri", "renderDetails": {"width": 1022, "height": 755, "posX": -100, "posY": -100}},
@@ -18,11 +21,14 @@
 	  {"name": "Kimberly", "renderDetails": {"width": 1032, "height": 1114, "posX": -100, "posY": -200}},
 	  {"name": "Lily", "renderDetails": {"width": 1180, "height": 1379, "posX": -350, "posY": -320}},
 	  {"name": "Luke", "renderDetails": {"width": 687, "height": 1100, "posX": -30, "posY": -50}},
+	  {"name": "Mai", "renderDetails": {"width": 924, "height": 1100, "posX": -150, "posY": -50}},
 	  {"name": "Manon", "renderDetails": {"width": 1554, "height": 1178, "posX": -530, "posY": -90}},
 	  {"name": "Marisa", "renderDetails": {"width": 880, "height": 1167, "posX": -80, "posY": -150}},
-	  {"name": "Terry", "renderDetails": {"width": 861, "height": 1305, "posX": -265, "posY": -140}},
 	  {"name": "Rashid", "renderDetails": {"width": 1320, "height": 1461, "posX": -300, "posY": -350}},
 	  {"name": "Ryu", "renderDetails": {"width": 710, "height": 1108, "posX": -100, "posY": -30}},
+	  {"name": "Sagat", "renderDetails": {"width": 851, "height": 1100, "posX": -200, "posY": -50}},
+	  {"name": "Terry", "renderDetails": {"width": 861, "height": 1305, "posX": -265, "posY": -140}},
+	  {"name": "Viper", "renderDetails": {"width": 697, "height": 1100, "posX": -100, "posY": -50}},
 	  {"name": "Zangief", "renderDetails": {"width": 816, "height": 941, "posX": -170, "posY": -30}}
 	]
   }
