@@ -37,7 +37,7 @@
 	  {"name": "Sandalphon", "renderDetails": {"width": 782, "height": 751, "posX": -100, "posY": -50}},
 	  {"name": "Galleon", "renderDetails": {"width": 799, "height": 751, "posX": -150, "posY": -100}},
 	  {"name": "Wilnas", "renderDetails": {"width": 1139, "height": 751, "posX": -300, "posY": 0}},
-	  {"name": "Meg", "renderDetails": {"width": 1141, "height": 751, "posX": -100, "posY": -50}},
+	  {"name": "Meg", "renderDetails": {"width": 1141, "height": 751, "posX": -320, "posY": -30}},
 	  {"name": "Ilsa", "renderDetails": {"width": 837, "height": 751, "posX": -110, "posY": -50}}
 	]
   }
