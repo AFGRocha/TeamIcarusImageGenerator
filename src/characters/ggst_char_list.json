@@ -25,7 +25,13 @@
 	  {"name": "Bedman", "renderDetails": {"width": 1000, "height": 1000, "posX": -200, "posY": -250}},
 	  {"name": "Asuka", "renderDetails": {"width": 1400, "height": 1400, "posX": -530, "posY": -200}},
 	  {"name": "Johnny", "renderDetails": {"width": 1400, "height": 1400, "posX": -470, "posY": -80}},
-	  {"name": "Elphelt", "renderDetails": {"width": 1200, "height": 1200, "posX": -300, "posY": 0}}
+	  {"name": "Elphelt", "renderDetails": {"width": 1200, "height": 1200, "posX": -300, "posY": 0}},
+	  {"name": "ABA", "renderDetails": {"width": 1000, "height": 1000, "posX": -200, "posY": -150}},
+	  {"name": "Slayer", "renderDetails": {"width": 1000, "height": 1000, "posX": -200, "posY": -150}},
+	  {"name": "Dizzy", "renderDetails": {"width": 1000, "height": 1000, "posX": -200, "posY": -150}},
+	  {"name": "Venom", "renderDetails": {"width": 1000, "height": 1000, "posX": -200, "posY": -150}},
+	  {"name": "Unika", "renderDetails": {"width": 1000, "height": 1000, "posX": -200, "posY": -150}},
+	  {"name": "Lucy", "renderDetails": {"width": 1000, "height": 1000, "posX": -200, "posY": -150}},
+	  {"name": "Jam", "renderDetails": {"width": 1200, "height": 1200, "posX": -300, "posY": -100}}
 	]
   }
-  
