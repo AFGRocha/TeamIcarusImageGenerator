@@ -32,6 +32,7 @@
 	  {"name": "Venom", "renderDetails": {"width": 1000, "height": 1000, "posX": -200, "posY": -150}},
 	  {"name": "Unika", "renderDetails": {"width": 1000, "height": 1000, "posX": -200, "posY": -150}},
 	  {"name": "Lucy", "renderDetails": {"width": 1000, "height": 1000, "posX": -200, "posY": -150}},
-	  {"name": "Jam", "renderDetails": {"width": 1200, "height": 1200, "posX": -300, "posY": -100}}
+	  {"name": "Jam", "renderDetails": {"width": 1200, "height": 1200, "posX": -300, "posY": -100}},
+	  {"name": "RoboKy", "renderDetails": {"width": 929, "height": 1039, "posX": -300, "posY": -100}}
 	]
   }

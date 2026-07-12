@@ -104,10 +104,14 @@ export default {
           if(loadedCounter == imagesToLoad.length) {
             ctx.drawImage(this.imgBackground, 0, 0, canvas.width, canvas.height);
 
+            const char2p1renderDetails = form.game === '2xko' ? form.playerData.first.character2.renderDetails : null;
+            const char2p2renderDetails = form.game === '2xko' ? form.playerData.second.character2.renderDetails : null;
+            const char2p3renderDetails = form.game === '2xko' ? form.playerData.third.character2.renderDetails : null;
+
             //Mask first place character
-            const char1Canvas = this.maskCharacter(imgFirstCharacter, this.firstCharMask, form.playerData.first.character.renderDetails, 0, form.game, imgFirstCharacter2, form.playerData.first.character2.renderDetails)
-            const char2Canvas = this.maskCharacter(imgSecondCharacter, this.secondCharMask, form.playerData.second.character.renderDetails, 469, form.game, imgSecondCharacter2, form.playerData.second.character2.renderDetails)
-            const char3Canvas = this.maskCharacter(imgThirdCharacter, this.thirdCharMask, form.playerData.third.character.renderDetails, 940, form.game, imgThirdCharacter2, form.playerData.third.character2.renderDetails)
+            const char1Canvas = this.maskCharacter(imgFirstCharacter, this.firstCharMask, form.playerData.first.character.renderDetails, 0, form.game, imgFirstCharacter2, char2p1renderDetails)
+            const char2Canvas = this.maskCharacter(imgSecondCharacter, this.secondCharMask, form.playerData.second.character.renderDetails, 469, form.game, imgSecondCharacter2, char2p2renderDetails)
+            const char3Canvas = this.maskCharacter(imgThirdCharacter, this.thirdCharMask, form.playerData.third.character.renderDetails, 940, form.game, imgThirdCharacter2, char2p3renderDetails)
 
 
             ctx.drawImage(char1Canvas, 0, 0, canvas.width, canvas.height);
