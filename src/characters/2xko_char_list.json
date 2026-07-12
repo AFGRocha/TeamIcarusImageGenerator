@@ -1,0 +1,20 @@
+{
+	"characters": [
+	  {"name": "Ahri", "renderDetails": {"width": 658, "height": 949, "posX": -100, "posY": 0}},
+	  {"name": "Akali", "renderDetails": {"width": 601, "height": 633, "posX": 0, "posY": 0}},
+	  {"name": "Blitzcrank", "renderDetails": {"width": 718, "height": 949, "posX": 0, "posY": 0}},
+	  {"name": "Braum", "renderDetails": {"width": 873, "height": 949, "posX": -50, "posY": 60}},
+	  {"name": "Caitlyn", "renderDetails": {"width": 963, "height": 1015, "posX": 0, "posY": 0}},
+	  {"name": "Darius", "renderDetails": {"width": 541, "height": 949, "posX": -70, "posY": -30}},
+	  {"name": "Ekko", "renderDetails": {"width": 698, "height": 949, "posX": 0, "posY": 0}},
+	  {"name": "Illaoi", "renderDetails": {"width": 751, "height": 949, "posX": 0, "posY": 0}},
+	  {"name": "Jinx", "renderDetails": {"width": 649, "height": 949, "posX": 0, "posY": 0}},
+	  {"name": "Senna", "renderDetails": {"width": 848, "height": 949, "posX": 0, "posY": 0}},
+	  {"name": "Teemo", "renderDetails": {"width": 438, "height": 633, "posX": 0, "posY": -100}},
+	  {"name": "Thresh", "renderDetails": {"width": 949, "height": 949, "posX": 0, "posY": 0}},
+	  {"name": "Vi", "renderDetails": {"width": 564, "height": 949, "posX": -30, "posY": 0}},
+	  {"name": "Warwick", "renderDetails": {"width": 949, "height": 873, "posX": 0, "posY": 0}},
+	  {"name": "Yasuo", "renderDetails": {"width": 610, "height": 949, "posX": 0, "posY": 0}}
+	]
+  }
+  

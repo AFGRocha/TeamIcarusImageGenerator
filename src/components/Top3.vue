@@ -96,6 +96,13 @@
           >
             <img class="select-image" src="../assets/games/COTW_Logo.png" />
           </el-option>
+          <el-option
+            class="select-option"
+            label="2XKO"
+            value="2xko"
+          >
+            <img class="select-image" src="../assets/games/2XKO_Logo.png" />
+          </el-option>
         </div>
       </el-select>
     </el-form-item>
@@ -127,6 +134,16 @@
               />
             </el-select>
           </el-form-item>
+          <el-form-item label="Character 2" v-if="form.game === '2xko'">
+            <el-select v-model="player.character2" value-key="name" filterable>
+              <el-option
+                v-for="character in currentCast"
+                :key="character.name"
+                :label="character.name"
+                :value="character"
+              />
+            </el-select>
+          </el-form-item>
           <el-form-item v-if="form.game === 'smash'" label="Color">
             <el-select v-model="player.color">
               <el-option
@@ -149,6 +166,7 @@
             <el-switch v-model="player.override"/>
           </el-form-item>
           <div v-if="player.override">
+            <div v-if="form.game === '2xko'" >Char 1</div>
               <el-form-item v-if="player.character" label="Width">
                 <el-input v-model="player.character.renderDetails.width" />
               </el-form-item>
@@ -160,6 +178,19 @@
                </el-form-item>
                <el-form-item v-if="player.character" label="Pos Y">
                 <el-input v-model="player.character.renderDetails.posY" />
+               </el-form-item>
+               <div v-if="form.game === '2xko'" >Char 2</div>
+               <el-form-item v-if="player.character2" label="Width">
+                <el-input v-model="player.character2.renderDetails.width" />
+              </el-form-item>
+               <el-form-item v-if="player.character2" label="Height">
+                <el-input v-model="player.character2.renderDetails.height" />
+               </el-form-item>
+               <el-form-item v-if="player.character2" label="Pos X">
+                <el-input v-model="player.character2.renderDetails.posX" />
+               </el-form-item>
+               <el-form-item v-if="player.character2" label="Pos Y">
+                <el-input v-model="player.character2.renderDetails.posY" />
                </el-form-item>
             </div>
         </div>
@@ -180,6 +211,7 @@ import uni2CharNames from "../characters/uni2_char_list.json";
 import tekken8CharNames from "../characters/tekken8_char_list.json";
 import roa2CharNames from "../characters/roa2_char_list.json";
 import cotwCharNames from "../characters/cotw_char_list.json";
+import twoxkoCharNames from "../characters/2xko_char_list.json";
 
 export default {
   name: "Top3",
@@ -187,7 +219,7 @@ export default {
     return {
       form: {
         game: "",
-        venue: "",
+        venue: "qd",
         event: "",
         edition: "",
         page: "",
@@ -240,6 +272,10 @@ export default {
         case "cotw":
           this.currentCast = cotwCharNames.characters;
           this.form.color = "#eb6c12";
+          break;
+        case "2xko":
+          this.currentCast = twoxkoCharNames.characters;
+          this.form.color = "#6a9200";
           break;
         default:
           this.currentCast = [];

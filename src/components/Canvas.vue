@@ -50,9 +50,21 @@ export default {
       const imgFirstCharacter = new Image();
       const imgSecondCharacter = new Image();
       const imgThirdCharacter = new Image();
+
+      //2xko
+      const imgFirstCharacter2 = new Image();
+      const imgSecondCharacter2 = new Image();
+      const imgThirdCharacter2 = new Image();
+
       let firstPlaceChar
       let secondPlaceChar
       let thirdPlaceChar
+
+      // 2xko
+      let firstPlaceChar2 = null
+      let secondPlaceChar2 = null
+      let thirdPlaceChar2 = null
+
       if (form.game === 'smash') {
         firstPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.first.character.name}_0${form.playerData.first.color}.png`);
         secondPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.second.character.name}_0${form.playerData.second.color}.png`);
@@ -61,6 +73,13 @@ export default {
         firstPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.first.character.name}_${form.playerData.first.color}.png`);
         secondPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.second.character.name}_${form.playerData.second.color}.png`);
         thirdPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.third.character.name}_${form.playerData.third.color}.png`);
+      } else if (form.game === '2xko') {
+        firstPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.first.character.name}.png`);
+        firstPlaceChar2 = require(`../assets/characters/${form.game}/${form.playerData.first.character2.name}.png`);
+        secondPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.second.character.name}.png`);
+        secondPlaceChar2 = require(`../assets/characters/${form.game}/${form.playerData.second.character2.name}.png`);
+        thirdPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.third.character.name}.png`);
+        thirdPlaceChar2 = require(`../assets/characters/${form.game}/${form.playerData.third.character2.name}.png`);
       } else {
         firstPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.first.character.name}.png`);
         secondPlaceChar = require(`../assets/characters/${form.game}/${form.playerData.second.character.name}.png`);
@@ -70,20 +89,26 @@ export default {
       imgFirstCharacter.src = firstPlaceChar;
       imgSecondCharacter.src = secondPlaceChar;
       imgThirdCharacter.src = thirdPlaceChar;
-      
-      const imagesToLoad = [this.imgBackground, this.imgForeground, imgFirstCharacter, imgSecondCharacter, imgThirdCharacter]
+
+      //2xko
+      imgFirstCharacter2.src = firstPlaceChar2;
+      imgSecondCharacter2.src = secondPlaceChar2;
+      imgThirdCharacter2.src = thirdPlaceChar2;
+
+      const imagesToLoad = form.game !== '2xko' ? [this.imgBackground, this.imgForeground, imgFirstCharacter, imgSecondCharacter, imgThirdCharacter] : [this.imgBackground, this.imgForeground, imgFirstCharacter, imgSecondCharacter, imgThirdCharacter, imgFirstCharacter2, imgSecondCharacter2, imgThirdCharacter2];
       let loadedCounter = 0;
       await document.fonts.ready;
-      for (let i = 0; i < imagesToLoad.length; i++) {
+      for (let i = 0; i < imagesToLoad.length; i++) { 
         imagesToLoad[i].onload = () => {
           loadedCounter++
           if(loadedCounter == imagesToLoad.length) {
             ctx.drawImage(this.imgBackground, 0, 0, canvas.width, canvas.height);
 
             //Mask first place character
-            const char1Canvas = this.maskCharacter(imgFirstCharacter, this.firstCharMask, form.playerData.first.character.renderDetails, 0, form.game)
-            const char2Canvas = this.maskCharacter(imgSecondCharacter, this.secondCharMask, form.playerData.second.character.renderDetails, 469, form.game)
-            const char3Canvas = this.maskCharacter(imgThirdCharacter, this.thirdCharMask, form.playerData.third.character.renderDetails, 940, form.game)
+            const char1Canvas = this.maskCharacter(imgFirstCharacter, this.firstCharMask, form.playerData.first.character.renderDetails, 0, form.game, imgFirstCharacter2, form.playerData.first.character2.renderDetails)
+            const char2Canvas = this.maskCharacter(imgSecondCharacter, this.secondCharMask, form.playerData.second.character.renderDetails, 469, form.game, imgSecondCharacter2, form.playerData.second.character2.renderDetails)
+            const char3Canvas = this.maskCharacter(imgThirdCharacter, this.thirdCharMask, form.playerData.third.character.renderDetails, 940, form.game, imgThirdCharacter2, form.playerData.third.character2.renderDetails)
+
 
             ctx.drawImage(char1Canvas, 0, 0, canvas.width, canvas.height);
             ctx.drawImage(char2Canvas, 0, 0, canvas.width, canvas.height);
@@ -94,45 +119,93 @@ export default {
             ctx.textAlign = "center";
             
             //First Place name and prefix
-            ctx.font = '96px "Bebas Neue"'
+            let firstFontSize = 96;
+            ctx.font = `${firstFontSize}px "Bebas Neue"`
+            let firstPrefixWidth = ctx.measureText(form.playerData.first.prefix).width;
+            let firstNameWidth = ctx.measureText(form.playerData.first.name).width;
+            while ((firstPrefixWidth + firstNameWidth) > 410 && firstFontSize > 20) {
+              firstFontSize -= 2;
+              ctx.font = `${firstFontSize}px "Bebas Neue"`
+              firstPrefixWidth = ctx.measureText(form.playerData.first.prefix).width;
+              firstNameWidth = ctx.measureText(form.playerData.first.name).width;
+            }
             ctx.fillStyle = "#fbd059";
-            ctx.fillText(form.playerData.first.prefix, 245 - ctx.measureText(form.playerData.first.name).width / 2, 625);
+            ctx.fillText(form.playerData.first.prefix, 245 - firstNameWidth / 2, 625);
             ctx.fillStyle = "#FFFFFF";
-            const firstNameX = ((form.playerData.first.prefix) ? 260 : 245);
-            ctx.fillText(form.playerData.first.name, firstNameX + ctx.measureText(form.playerData.first.prefix).width / 2, 625)  
+            const firstNameX = ((form.playerData.first.prefix) ? 260 : 250);
+            ctx.fillText(form.playerData.first.name, firstNameX + firstPrefixWidth / 2, 625)  
             //First Place twitter
             if(form.playerData.first.twitter) {
-              ctx.font = '42px "Bebas Neue"'
+              let twitterFontSize = 42;
+              ctx.font = `${twitterFontSize}px "Bebas Neue"`
+              let twitterWidth = ctx.measureText(`@${form.playerData.first.twitter}`).width;
+              while (twitterWidth > 410 && twitterFontSize > 20) {
+                twitterFontSize -= 2;
+                ctx.font = `${twitterFontSize}px "Bebas Neue"`
+                twitterWidth = ctx.measureText(`@${form.playerData.first.twitter}`).width;
+              }
               ctx.fillStyle = "#000000";
               ctx.fillText(`@${form.playerData.first.twitter}`, 245, 677);
               ctx.drawImage(this.twitterIcon, 45, 645);
             }
 
             //Second Place name and prefix
-            ctx.font = '96px "Bebas Neue"'
+            let secondFontSize = 96;
+            ctx.font = `${secondFontSize}px "Bebas Neue"`
+            let secondPrefixWidth = ctx.measureText(form.playerData.second.prefix).width;
+            let secondNameWidth = ctx.measureText(form.playerData.second.name).width;
+            while ((secondPrefixWidth + secondNameWidth) > 410 && secondFontSize > 20) {
+              secondFontSize -= 2;
+              ctx.font = `${secondFontSize}px "Bebas Neue"`
+              secondPrefixWidth = ctx.measureText(form.playerData.second.prefix).width;
+              secondNameWidth = ctx.measureText(form.playerData.second.name).width;
+            }
             ctx.fillStyle = "#fbd059";
-            ctx.fillText(form.playerData.second.prefix, 715 - ctx.measureText(form.playerData.second.name).width / 2, 625);
+            ctx.fillText(form.playerData.second.prefix, 715 - secondNameWidth / 2, 625);
             ctx.fillStyle = "#FFFFFF";
-            const secondNameX = ((form.playerData.second.prefix) ? 730 : 715);
-            ctx.fillText(form.playerData.second.name, secondNameX + ctx.measureText(form.playerData.second.prefix).width / 2, 625)  
+            const secondNameX = ((form.playerData.second.prefix) ? 730 : 720);
+            ctx.fillText(form.playerData.second.name, secondNameX + secondPrefixWidth / 2, 625)  
             //Second Place twitter
             if(form.playerData.second.twitter) {
-              ctx.font = '42px "Bebas Neue"'
+              let twitterFontSize = 42;
+              ctx.font = `${twitterFontSize}px "Bebas Neue"`
+              let twitterWidth = ctx.measureText(`@${form.playerData.second.twitter}`).width;
+              while (twitterWidth > 410 && twitterFontSize > 20) {
+                twitterFontSize -= 2;
+                ctx.font = `${twitterFontSize}px "Bebas Neue"`
+                twitterWidth = ctx.measureText(`@${form.playerData.second.twitter}`).width;
+              }
               ctx.fillStyle = "#000000";
-              ctx.fillText(`@${form.playerData.second.twitter}`, 715, 677);
+              ctx.fillText(`@${form.playerData.second.twitter}`, 715, 682);
               ctx.drawImage(this.twitterIcon, 515, 645);
             }
 
             //Third Place name and prefix
-            ctx.font = '96px "Bebas Neue"'
+            let thirdFontSize = 96;
+            ctx.font = `${thirdFontSize}px "Bebas Neue"`
+            let thirdPrefixWidth = ctx.measureText(form.playerData.third.prefix).width;
+            let thirdNameWidth = ctx.measureText(form.playerData.third.name).width;
+            while ((thirdPrefixWidth + thirdNameWidth) > 410 && thirdFontSize > 20) {
+              thirdFontSize -= 2;
+              ctx.font = `${thirdFontSize}px "Bebas Neue"`
+              thirdPrefixWidth = ctx.measureText(form.playerData.third.prefix).width;
+              thirdNameWidth = ctx.measureText(form.playerData.third.name).width;
+            }
             ctx.fillStyle = "#fbd059";
-            ctx.fillText(form.playerData.third.prefix, 1187 - ctx.measureText(form.playerData.third.name).width / 2, 625);
+            ctx.fillText(form.playerData.third.prefix, 1187 - thirdNameWidth / 2, 625);
             ctx.fillStyle = "#FFFFFF";
             const thirdNameX = ((form.playerData.third.prefix) ? 1202 : 1187);
-            ctx.fillText(form.playerData.third.name, thirdNameX + ctx.measureText(form.playerData.third.prefix).width / 2, 625)  
+            ctx.fillText(form.playerData.third.name, thirdNameX + thirdPrefixWidth / 2, 625)  
             //Third Place twitter
             if(form.playerData.third.twitter) {
-              ctx.font = '42px "Bebas Neue"'
+              let twitterFontSize = 42;
+              ctx.font = `${twitterFontSize}px "Bebas Neue"`
+              let twitterWidth = ctx.measureText(`@${form.playerData.third.twitter}`).width;
+              while (twitterWidth > 410 && twitterFontSize > 20) {
+                twitterFontSize -= 2;
+                ctx.font = `${twitterFontSize}px "Bebas Neue"`
+                twitterWidth = ctx.measureText(`@${form.playerData.third.twitter}`).width;
+              }
               ctx.fillStyle = "#000000";
               ctx.fillText(`@${form.playerData.third.twitter}`, 1187, 677);
               ctx.drawImage(this.twitterIcon, 987, 645);
@@ -285,24 +358,43 @@ export default {
       // Simulate a click on the link to trigger the download
       link.click();
     }, 
-    maskCharacter(image, mask, renderDetails, xModifier, game) {
+    maskCharacter(image, mask, renderDetails, xModifier, game, secondImage2xko = null, secondRenderDetails2xko = null) {
       const offscreenCanvas = document.createElement("canvas");
       offscreenCanvas.width = this.$refs.myCanvas.width;
       offscreenCanvas.height = this.$refs.myCanvas.height;
       const offscreenCtx = offscreenCanvas.getContext("2d");
       
-      if(game != 'sf6' && game != 'cotw') {
-        offscreenCtx.drawImage(image, parseInt(renderDetails.posX) + xModifier + 20, parseInt(renderDetails.posY) + 10, renderDetails.width, renderDetails.height);
+      if (game === '2xko' && secondImage2xko) {
+        const combinedCanvas = document.createElement("canvas");
+        combinedCanvas.width = this.$refs.myCanvas.width;
+        combinedCanvas.height = this.$refs.myCanvas.height;
+        const combinedCtx = combinedCanvas.getContext("2d");
+
+        combinedCtx.drawImage(secondImage2xko, parseInt(secondRenderDetails2xko.posX) + xModifier + 80, parseInt(secondRenderDetails2xko.posY) - 100, secondRenderDetails2xko.width, secondRenderDetails2xko.height);
+        combinedCtx.drawImage(image, parseInt(renderDetails.posX) + xModifier - 70, parseInt(renderDetails.posY) + 100, renderDetails.width, renderDetails.height);
+        
+        offscreenCtx.drawImage(combinedCanvas, 0, 0);
         offscreenCtx.globalCompositeOperation = "source-in";
         offscreenCtx.drawImage(mask, 0, 0, this.$refs.myCanvas.width, this.$refs.myCanvas.height);
         offscreenCtx.globalCompositeOperation = "source-over";
-      }
-      
 
-      offscreenCtx.drawImage(image, parseInt(renderDetails.posX)  + xModifier, renderDetails.posY, renderDetails.width, renderDetails.height);
-      offscreenCtx.globalCompositeOperation = "destination-in";
-      offscreenCtx.drawImage(mask, 0, 0, this.$refs.myCanvas.width, this.$refs.myCanvas.height);
-      offscreenCtx.globalCompositeOperation = "source-over";
+        offscreenCtx.drawImage(combinedCanvas, 20, 10);
+        offscreenCtx.globalCompositeOperation = "destination-in";
+        offscreenCtx.drawImage(mask, 0, 0, this.$refs.myCanvas.width, this.$refs.myCanvas.height);
+        offscreenCtx.globalCompositeOperation = "source-over";
+      } else {
+        if(game != 'sf6' && game != 'cotw') {
+          offscreenCtx.drawImage(image, parseInt(renderDetails.posX) + xModifier + 20, parseInt(renderDetails.posY) + 10, renderDetails.width, renderDetails.height);
+          offscreenCtx.globalCompositeOperation = "source-in";
+          offscreenCtx.drawImage(mask, 0, 0, this.$refs.myCanvas.width, this.$refs.myCanvas.height);
+          offscreenCtx.globalCompositeOperation = "source-over";
+        }
+        
+        offscreenCtx.drawImage(image, parseInt(renderDetails.posX)  + xModifier, renderDetails.posY, renderDetails.width, renderDetails.height);
+        offscreenCtx.globalCompositeOperation = "destination-in";
+        offscreenCtx.drawImage(mask, 0, 0, this.$refs.myCanvas.width, this.$refs.myCanvas.height);
+        offscreenCtx.globalCompositeOperation = "source-over";
+      }
 
       return offscreenCanvas
     },
